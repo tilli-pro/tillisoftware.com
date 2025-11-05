@@ -79,10 +79,10 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-black text-white py-22">
-      <div className="page-width px-8 grid grid-rows-2 grid-cols-3">
-        <div className="row-span-1 col-span-1 flex flex-col justify-start items-start gap-4">
-          <div id="logo-footer" className="font-header text-3xl font-medium">
+    <footer className="w-full bg-black py-22 text-white">
+      <div className="page-width grid grid-cols-3 grid-rows-2 px-8">
+        <div className="col-span-1 row-span-1 flex flex-col items-start justify-start gap-4">
+          <div id="logo-footer" className="font-header font-medium text-3xl">
             tilli
           </div>
           <p className="text-sm">
@@ -97,15 +97,15 @@ export const Footer: React.FC = () => {
             More about us
           </Button>
         </div>
-        <div className="row-span-1 col-span-2 justify-self-end self-start">
+        <div className="col-span-2 row-span-1 self-start justify-self-end">
           <div className="flex items-start justify-end gap-6">
             {Object.entries(footerSiteMapLinks).map(([section, links]) => (
               <div
                 key={section}
-                className="flex flex-col gap-4 items-start justify-start"
+                className="flex flex-col items-start justify-start gap-4"
               >
                 <h3 className="font-sans">{section}</h3>
-                <div className="flex flex-col gap-2 max-w-32 min-w-24">
+                <div className="flex min-w-24 max-w-32 flex-col gap-2">
                   {links.map(({ text, href }) => (
                     <Link
                       noIcon
@@ -122,8 +122,8 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="self-end justify-self-stretch">
-          <div className="flex justify-between w-full items-end">
-            <div className="flex flex-1 justify-start items-end gap-2">
+          <div className="flex w-full items-end justify-between">
+            <div className="flex flex-1 items-end justify-start gap-2">
               <div className="flex flex-col justify-end gap-2">
                 <Button
                   variant="secondary"
@@ -181,7 +181,7 @@ export const Footer: React.FC = () => {
                 </Link>
                 <Separator
                   orientation="vertical"
-                  className="bg-muted-foreground mx-2 data-[orientation=vertical]:h-3"
+                  className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
                 />
                 <Link
                   noIcon
@@ -192,7 +192,7 @@ export const Footer: React.FC = () => {
                 </Link>
                 <Separator
                   orientation="vertical"
-                  className="bg-muted-foreground mx-2 data-[orientation=vertical]:h-3"
+                  className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
                 />
                 <Link
                   noIcon
@@ -224,7 +224,7 @@ export const Footer: React.FC = () => {
         </div>
         <div className="place-self-end">
           <div className="flex flex-col text-right">
-            <div className="font-header mb-4">Headquarters</div>
+            <div className="mb-4 font-header">Headquarters</div>
             <div className="text-muted-foreground text-xs">
               8260 Greensboro Dr,
               <br />

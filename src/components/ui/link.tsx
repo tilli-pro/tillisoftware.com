@@ -47,11 +47,15 @@ const LinkArrow: React.FC<LinkArrowProps> = ({ width, height, color }) => {
 interface LinkProps extends _LinkProps {
   className?: string;
   asButton?: boolean;
+  noIcon?: boolean;
+  color?: string;
 }
 export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   children,
   className,
   asButton,
+  noIcon,
+  color,
   ...props
 }) => {
   const Outer = asButton ? Button : Fragment;
@@ -63,16 +67,22 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
     <Outer {...outerProps}>
       <_Link
         {...props}
-        className={cn(className, "flex items-center justify-start gap-2", {
-          "hover:text-primary/90": !asButton,
-        })}
+        className={cn(
+          "flex items-center justify-start gap-2",
+          {
+            "hover:text-primary/90": !asButton,
+          },
+          className,
+        )}
       >
         {children}
-        <LinkArrow
-          width={asButton ? 4 : 9}
-          height={asButton ? 4 : 9}
-          color={asButton ? "white" : "black"}
-        />
+        {!noIcon && (
+          <LinkArrow
+            width={asButton ? 4 : 9}
+            height={asButton ? 4 : 9}
+            color={asButton ? "white" : (color ?? "black")}
+          />
+        )}
       </_Link>
     </Outer>
   );

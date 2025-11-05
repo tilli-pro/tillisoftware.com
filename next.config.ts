@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   cacheMaxMemorySize: 128 * 1024 * 1024, // 128 MB
   poweredByHeader: false,
+  images: {
+    remotePatterns: [new URL("https://placecats.com/**")],
+    // dangerouslyAllowSVG: true,
+  },
 };
 
 export default nextConfig;

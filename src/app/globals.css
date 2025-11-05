@@ -139,7 +139,7 @@
   top: calc(50% - 4px);
   @apply block w-full absolute h-1 bg-primary/10 backdrop-blur-lg;
 } */
- 
+
 .page-width {
   @apply w-full md:max-w-3xl lg:max-w-5xl mx-auto;
 }

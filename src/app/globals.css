@@ -120,17 +120,15 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1,h2,h3 {
+  h1,
+  h2,
+  h3 {
     @apply font-header;
   }
 }
 
 .header-blur {
-  mask-image: linear-gradient(
-    to bottom,
-    white 0% 50%,
-    transparent 50% 100%
-  );
+  mask-image: linear-gradient(to bottom, white 0% 50%, transparent 50% 100%);
   @apply h-[200%];
 }
 

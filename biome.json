@@ -20,6 +20,15 @@
       "recommended": true,
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "warn",
+          "options": {
+            "attributes": ["classList", "className", "class"],
+            "functions": ["clsx", "cva", "cn"]
+          }
+        }
       }
     },
     "domains": {
@@ -30,7 +39,9 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedProperties": "on"
       }
     }
   }

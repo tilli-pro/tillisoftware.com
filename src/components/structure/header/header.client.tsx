@@ -8,7 +8,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
@@ -31,7 +30,7 @@ const navContent: { title: string; content: React.ReactElement }[] = [
   {
     title: "Services",
     content: (
-      <div className="max-w-lg min-w-[300px]">
+      <div className="min-w-[300px] max-w-lg">
         <div className="grid grid-cols-2 gap-2 items-stretch justify-stretch">
           <div className="size-32">a</div>
           <div className="size-32">a</div>
@@ -45,15 +44,15 @@ const navContent: { title: string; content: React.ReactElement }[] = [
   },
   {
     title: "Industries",
-    content: <div>jklkm</div>,
+    content: <div>Industries</div>,
   },
   {
     title: "Developers",
-    content: <div>feeewe</div>,
+    content: <div>Developers</div>,
   },
   {
     title: "Resources",
-    content: <div>weweawe</div>,
+    content: <div>Resources</div>,
   },
 ];
 
@@ -98,13 +97,13 @@ export const Header: React.FC = () => {
           tilli
         </div>
         <div className="flex-1 flex justify-center">
-          <NavigationMenu viewport={mobile} className="w-full">
+          <NavigationMenu className="w-full" viewport={mobile}>
             <NavigationMenuList className="justify-center">
               {navContent.map(({ title, content }) => (
                 <NavigationMenuItem key={title}>
                   <NavigationMenuTrigger
-                    noIcon
                     className="text-xs px-2 py-1 bg-transparent hover:bg-accent/10 data-[state=open]:hover:bg-accent/20 data-[state=open]:bg-accent/30 data-[state=open]:focus:bg-accent/40 focus:bg-accent/50 duration-500"
+                    noIcon
                   >
                     {title}
                   </NavigationMenuTrigger>
@@ -118,7 +117,7 @@ export const Header: React.FC = () => {
         </div>
         <div className="hidden items-center gap-4 z-9999 md:flex text-xs w-16">
           {/* <Link href="/pricing">Pricing</Link> */}
-          <Link href="/trial" asButton>
+          <Link asButton href="/trial">
             Free Trial
           </Link>
         </div>

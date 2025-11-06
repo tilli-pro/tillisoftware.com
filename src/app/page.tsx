@@ -84,7 +84,7 @@ export default function Home() {
         </section>
 
         <section className="over-page-width mt-32">
-          <div className="relative w-full overflow-hidden rounded-t-lg bg-linear-to-b from-[#325EF6]/5 to-90% to-background px-4">
+          <div className="relative w-full overflow-hidden rounded-t-4xl md:rounded-lg bg-linear-to-b from-[#325EF6]/5 to-90% to-background px-4">
             <div className="-z-1 absolute top-0 left-0 h-full w-full overflow-hidden">
               <div className="-top-1/2 absolute left-0 h-full w-2/3 rounded-full bg-conic from-[#CAE1FF80] via-[#004DFF80] to-[#A8CFEA80] blur-3xl" />
               <div className="absolute top-0 right-0 h-2/3 w-2/3 rounded-full bg-conic/shorter from-[#CAE1FF80] via-[#004DFFFF] to-[#A8CFEA80] blur-3xl" />

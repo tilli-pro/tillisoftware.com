@@ -139,5 +139,9 @@
 } */
 
 .page-width {
-  @apply w-full md:max-w-3xl lg:max-w-5xl mx-auto;
+  @apply w-full md:max-w-3xl lg:max-w-5xl mx-auto px-4 box-border;
+}
+
+.over-page-width {
+  @apply w-full md:max-w-4xl lg:max-w-6xl mx-auto;
 }

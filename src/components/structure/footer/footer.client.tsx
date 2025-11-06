@@ -24,25 +24,29 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
       text: "tilliPay",
       href: "/products/tillipay",
     },
-  ],
-  Industries: [
     {
-      text: "Utilities",
-      href: "/industries/utilities",
-    },
-    {
-      text: "Banking & Finance",
-      href: "/industries/banking-finance",
-    },
-    {
-      text: "Telecom",
-      href: "/industries/telecommunications",
-    },
-    {
-      text: "View All",
-      href: "/industries",
+      text: "Compare",
+      href: "/products/compare",
     },
   ],
+  // Industries: [
+  //   {
+  //     text: "Utilities",
+  //     href: "/industries/utilities",
+  //   },
+  //   {
+  //     text: "Banking & Finance",
+  //     href: "/industries/banking-finance",
+  //   },
+  //   {
+  //     text: "Telecom",
+  //     href: "/industries/telecommunications",
+  //   },
+  //   {
+  //     text: "View All",
+  //     href: "/industries",
+  //   },
+  // ],
   Company: [
     {
       text: "About Us",
@@ -67,8 +71,8 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
       href: "/resources/trial",
     },
     {
-      text: "Compare Products",
-      href: "/resources/compare",
+      text: "Industries",
+      href: "/industries",
     },
     {
       text: "Contact",
@@ -80,10 +84,10 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
 export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-black py-22 text-white">
-      <div className="page-width grid grid-cols-3 grid-rows-2 px-8">
+      <div className="page-width grid grid-cols-3 grid-rows-2">
         <div className="col-span-1 row-span-1 flex flex-col items-start justify-start gap-4">
-          <div id="logo-footer" className="font-header font-medium text-3xl">
-            tilli
+          <div className="font-header font-medium text-3xl" id="logo-footer">
+            tilli.
           </div>
           <p className="text-sm">
             We{"\u2019"}re devoted to creating a global consumer environment
@@ -93,25 +97,22 @@ export const Footer: React.FC = () => {
             businesses and people connect, collaborate, and make payments in
             real-time.
           </p>
-          <Button className="text-primary" variant="outline">
-            More about us
-          </Button>
         </div>
         <div className="col-span-2 row-span-1 self-start justify-self-end">
           <div className="flex items-start justify-end gap-6">
             {Object.entries(footerSiteMapLinks).map(([section, links]) => (
               <div
+                className="flex flex-col items-end justify-start gap-4 text-right"
                 key={section}
-                className="flex flex-col items-start justify-start gap-4"
               >
                 <h3 className="font-sans">{section}</h3>
-                <div className="flex min-w-24 max-w-32 flex-col gap-2">
+                <div className="flex min-w-24 max-w-32 flex-col items-end gap-2">
                   {links.map(({ text, href }) => (
                     <Link
-                      noIcon
-                      key={text}
-                      href={href}
                       className="text-muted-foreground hover:text-muted-foreground"
+                      href={href}
+                      key={text}
+                      noIcon
                     >
                       {text}
                     </Link>
@@ -126,39 +127,39 @@ export const Footer: React.FC = () => {
             <div className="flex flex-1 items-end justify-start gap-2">
               <div className="flex flex-col justify-end gap-2">
                 <Button
-                  variant="secondary"
-                  size="icon"
                   className="rounded-full"
+                  size="icon"
+                  variant="secondary"
                 >
                   <SiYoutube className="size-4 text-black" />
                 </Button>
                 <Button
-                  variant="secondary"
-                  size="icon"
                   className="rounded-full"
+                  size="icon"
+                  variant="secondary"
                 >
                   <SiYoutube className="size-4 text-black" />
                 </Button>
                 <Button
-                  variant="secondary"
-                  size="icon"
                   className="rounded-full"
+                  size="icon"
+                  variant="secondary"
                 >
                   <SiX className="size-4 text-black" />
                 </Button>
               </div>
               <div className="flex flex-col justify-end gap-2">
                 <Button
-                  variant="secondary"
-                  size="icon"
                   className="rounded-full"
+                  size="icon"
+                  variant="secondary"
                 >
                   <SiFacebook className="size-4 text-black" />
                 </Button>
                 <Button
-                  variant="secondary"
-                  size="icon"
                   className="rounded-full"
+                  size="icon"
+                  variant="secondary"
                 >
                   <SiInstagram className="size-4 text-black" />
                 </Button>
@@ -167,37 +168,38 @@ export const Footer: React.FC = () => {
 
             <div className="text-right text-muted-foreground text-xs">
               <p>
-                © {new Date().getFullYear()} - Copyright tilli
+                © {new Date().getFullYear()}{" "}
+                <span className="font-header text-white">tilli</span>
                 <br />
-                All Rights reserved
+                all rights reserved
               </p>
               <div className="flex items-center justify-end pt-2">
                 <Link
-                  noIcon
-                  href="/terms"
                   className="text-muted-foreground hover:text-muted-foreground"
+                  href="/terms"
+                  noIcon
                 >
                   Terms
                 </Link>
                 <Separator
-                  orientation="vertical"
                   className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
+                  orientation="vertical"
                 />
                 <Link
-                  noIcon
-                  href="/privacy-policy"
                   className="text-muted-foreground hover:text-muted-foreground"
+                  href="/privacy-policy"
+                  noIcon
                 >
                   Privacy
                 </Link>
                 <Separator
-                  orientation="vertical"
                   className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
+                  orientation="vertical"
                 />
                 <Link
-                  noIcon
-                  href="/cookies"
                   className="text-muted-foreground hover:text-muted-foreground"
+                  href="/cookies"
+                  noIcon
                 >
                   Cookies
                 </Link>
@@ -207,16 +209,16 @@ export const Footer: React.FC = () => {
         </div>
         <div className="self-end justify-self-center">
           <div className="flex flex-col gap-2">
-            <Link className="font-header" href="/resources/demo" color="white">
+            <Link className="font-header" color="white" href="/resources/demo">
               Request a Demo
             </Link>
-            <Link className="font-header" href="/resources/trial" color="white">
+            <Link className="font-header" color="white" href="/resources/trial">
               Start a Free Trial
             </Link>
             <Link
               className="font-header"
-              href="/resources/contact"
               color="white"
+              href="/resources/contact"
             >
               Contact Us
             </Link>

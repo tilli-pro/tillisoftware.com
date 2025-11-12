@@ -1,3 +1,5 @@
+import { Building } from "lucide-react";
+import { SectionHeader } from "@/components/structure/text-header/section-header";
 import { Button } from "@/components/ui/button";
 import { BusinessCarousel } from "./business-carousel";
 import { SolutionsCarousel } from "./solutions-carousel";
@@ -59,16 +61,18 @@ export default function Home() {
         </section>
 
         <section className="page-width my-32 flex flex-col items-start md:flex-row">
-          <div className="w-full md:w-1/2">
-            <div className="font-header text-muted-foreground text-sm uppercase">
-              Our Platform
-            </div>
-            <h2 className="text-3xl">
-              Build for
-              <br />
-              <span>seamless</span> service delivery
-            </h2>
-          </div>
+          <SectionHeader
+            containerClassName="w-full md:w-1/2"
+            subTitleIcon={<Building size={18} />}
+            subtitle={"Our Platform"}
+            title={
+              <>
+                Build for
+                <br />
+                <span>seamless</span> service delivery
+              </>
+            }
+          />
           <div className="flex w-full items-center justify-center md:w-1/2">
             <div>
               <p className="text-sm">

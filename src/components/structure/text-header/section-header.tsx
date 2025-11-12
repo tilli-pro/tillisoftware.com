@@ -21,7 +21,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <div
           className={cn(
-            "flex items-center gap-1 font-medium text-muted-foreground text-sm uppercase font-header",
+            "flex items-center gap-1 font-header font-medium text-muted-foreground text-sm uppercase",
             subtitleClassName,
           )}
         >

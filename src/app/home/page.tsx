@@ -1,5 +1,6 @@
-import { Building } from "lucide-react";
+import { Building, DiamondPlus, LayoutGrid, SquareStar } from "lucide-react";
 import { SectionHeader } from "@/components/structure/text-header/section-header";
+import { SectionSubtitle } from "@/components/structure/text-header/section-subtitle";
 import { Button } from "@/components/ui/button";
 import { BusinessCarousel } from "./business-carousel";
 import { SolutionsCarousel } from "./solutions-carousel";
@@ -63,8 +64,8 @@ export default function Home() {
         <section className="page-width my-32 flex flex-col items-start md:flex-row">
           <SectionHeader
             containerClassName="w-full md:w-1/2"
-            subTitleIcon={<Building size={18} />}
             subtitle={"Our Platform"}
+            subtitleIcon={<Building size={18} />}
             title={
               <>
                 Build for
@@ -238,56 +239,10 @@ export default function Home() {
 
         <section className="page-width my-32">
           <div className="mb-6 flex items-center gap-2.5">
-            <div className="flex h-6 w-6 items-center justify-center">
-              <svg
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Solutions by Industry</title>
-                <rect
-                  height="7"
-                  rx="1"
-                  stroke="#A6A6A6"
-                  strokeWidth="1.5"
-                  width="7"
-                  x="3"
-                  y="3"
-                />
-                <rect
-                  height="7"
-                  rx="1"
-                  stroke="#A6A6A6"
-                  strokeWidth="1.5"
-                  width="7"
-                  x="14"
-                  y="3"
-                />
-                <rect
-                  height="7"
-                  rx="1"
-                  stroke="#A6A6A6"
-                  strokeWidth="1.5"
-                  width="7"
-                  x="3"
-                  y="14"
-                />
-                <rect
-                  height="7"
-                  rx="1"
-                  stroke="#A6A6A6"
-                  strokeWidth="1.5"
-                  width="7"
-                  x="14"
-                  y="14"
-                />
-              </svg>
-            </div>
-            <p className="font-header text-muted-foreground text-xl">
-              SOLUTIONS BY INDUSTRY
-            </p>
+            <SectionSubtitle
+              subtitle={"Solutions By Industry"}
+              subtitleIcon={<LayoutGrid size={18} />}
+            />
           </div>
 
           <SolutionsCarousel />
@@ -295,66 +250,21 @@ export default function Home() {
 
         <section className="page-width my-32">
           <div className="mb-16 flex flex-col items-center gap-6 text-center">
-            <div className="flex items-center justify-center gap-2.5">
-              <div className="flex h-6 w-6 items-center justify-center">
-                <svg
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Gradient</title>
-                  <rect
-                    height="7"
-                    rx="1"
-                    stroke="#A6A6A6"
-                    strokeWidth="1.5"
-                    width="7"
-                    x="3"
-                    y="3"
-                  />
-                  <rect
-                    height="7"
-                    rx="1"
-                    stroke="#A6A6A6"
-                    strokeWidth="1.5"
-                    width="7"
-                    x="14"
-                    y="3"
-                  />
-                  <rect
-                    height="7"
-                    rx="1"
-                    stroke="#A6A6A6"
-                    strokeWidth="1.5"
-                    width="7"
-                    x="3"
-                    y="14"
-                  />
-                  <rect
-                    height="7"
-                    rx="1"
-                    stroke="#A6A6A6"
-                    strokeWidth="1.5"
-                    width="7"
-                    x="14"
-                    y="14"
-                  />
-                </svg>
-              </div>
-              <p className="font-header text-muted-foreground text-xl">
-                OUR BENEFITS
-              </p>
-            </div>
+            <SectionHeader
+              subtitle={"Our Benefits"}
+              subtitleClassName="text-center justify-center w-full"
+              subtitleIcon={<DiamondPlus size={16} />}
+              title={
+                <>
+                  How is tilli{" "}
+                  <span className="bg-linear-to-r from-[#448de6] to-[#98b2e9] bg-clip-text text-transparent">
+                    different
+                  </span>
+                  ?
+                </>
+              }
+            />
             <div className="mx-auto flex max-w-3xl flex-col gap-5">
-              <h2 className="font-header text-5xl">
-                How is tilli{" "}
-                <span className="bg-linear-to-r from-[#448de6] to-[#98b2e9] bg-clip-text text-transparent">
-                  different
-                </span>
-                ?
-              </h2>
               <p className="text-xl leading-[27px]">
                 tilli goes beyond just processing payments. Our platform is
                 built to simplify financial management, automate workflows, and
@@ -449,60 +359,14 @@ export default function Home() {
         <section className="my-32 w-full">
           <div className="w-full bg-linear-to-r from-[#448de6] to-[#98b2e9] py-14">
             <div className="mb-16 px-4 md:px-8 lg:px-16">
-              <div className="mb-2.5 flex items-start gap-2.5">
-                <div className="flex h-6 w-6 items-center justify-center">
-                  <svg
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <title>Gradient</title>
-                    <rect
-                      height="7"
-                      rx="1"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      width="7"
-                      x="3"
-                      y="3"
-                    />
-                    <rect
-                      height="7"
-                      rx="1"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      width="7"
-                      x="14"
-                      y="3"
-                    />
-                    <rect
-                      height="7"
-                      rx="1"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      width="7"
-                      x="3"
-                      y="14"
-                    />
-                    <rect
-                      height="7"
-                      rx="1"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      width="7"
-                      x="14"
-                      y="14"
-                    />
-                  </svg>
-                </div>
-                <p className="font-header text-white text-xl">RESULTS</p>
-              </div>
+              <SectionHeader
+                containerClassName="text-white mb-4"
+                subtitle={"What We've Accomplished"}
+                subtitleClassName="text-white"
+                subtitleIcon={<SquareStar color="white" size={18} />}
+                title="Powering seamless payments and billing for businesses"
+              />
               <div className="flex max-w-4xl flex-col gap-5 text-white">
-                <h2 className="font-header text-5xl leading-tight">
-                  Powering seamless payments and billing for businesses
-                </h2>
                 <p className="font-header text-xl">
                   Join thousands of businesses leveraging tilli secure,
                   efficient, and intelligent billing solutions

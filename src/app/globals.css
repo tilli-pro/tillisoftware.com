@@ -145,3 +145,28 @@
 .over-page-width {
   @apply w-full md:max-w-4xl lg:max-w-6xl mx-auto;
 }
+
+.banner .inner .set {
+  --speed: 30s;
+  --direction: backwards;
+  animation: swipe var(--speed) linear infinite var(--direction);
+  animation-play-state: running;
+  @apply flex;
+}
+
+.banner .inner .set img {
+  @apply object-fill max-w-40 mx-2 box-border;
+}
+
+.banner:hover .inner .set {
+  animation-play-state: paused;
+}
+
+@keyframes swipe {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

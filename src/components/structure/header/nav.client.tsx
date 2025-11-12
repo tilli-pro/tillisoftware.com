@@ -3,8 +3,10 @@
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { win } from "@/lib/utils";
 import { navItems } from "./nav-items";
+import { NavProducts } from "./nav-products";
 
 const HOVER_OPEN_DELAY = 200;
 const HOVER_OPEN_SKIP_DELAY = 100;
@@ -12,13 +14,8 @@ const HOVER_CLOSE_DELAY = 300;
 
 type NavKey = (typeof navItems)[number]["label"];
 
-const _navContentMap: Record<NavKey, React.ReactElement> = {
-  Products: (
-    <div className="flex w-full items-center justify-center gap-2">
-      <div className="h-[400px] flex-1">asdf</div>
-      <div className="">ddd</div>
-    </div>
-  ),
+const navContentMap: Record<NavKey, React.ReactElement> = {
+  Products: <NavProducts />,
   Industries: <div>Industries</div>,
   Company: <div>Company</div>,
   Resources: <div>Resources</div>,
@@ -28,6 +25,7 @@ const _navContentMap: Record<NavKey, React.ReactElement> = {
 export const Nav: React.FC = () => {
   const [openNavItem, setOpenNavItem] = useState<NavKey | undefined>(undefined);
   const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
+  const isMobile = useIsMobile();
   // const [isEntering, setIsEntering] = useState(false);
   // const [isExiting, setIsExiting] = useState(false);
   const _openTimerRef = useRef(0);
@@ -105,7 +103,7 @@ export const Nav: React.FC = () => {
 
   // const isTransitioning = isEntering || isExiting;
 
-  return (
+  return isMobile ? null : (
     <nav className="group z-9999 w-full">
       <ul className="flex justify-center font-medium text-xs">
         {navItems.map((item, _index) => (
@@ -145,7 +143,7 @@ export const Nav: React.FC = () => {
               onMouseEnter={onEnterNavDropdown}
               onMouseLeave={onLeaveNavDropdown}
             >
-              <div className="size-full rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-exclusion shadow-accent-foreground/5 shadow-lg ring-4 ring-border/50 backdrop-blur">
+              <div className="size-full rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-exclusion shadow-accent-foreground/5 shadow-lg ring-2 ring-border/50 backdrop-blur">
                 <motion.div
                   animate={{
                     opacity: 1,
@@ -153,18 +151,15 @@ export const Nav: React.FC = () => {
                     translateY: 0,
                   }}
                   exit={{
-                    // translateY: isTransitioning ? -6 : 0,
-                    // translateX: isTransitioning ? 6 : -6,
                     opacity: 0.4,
                   }}
                   initial={{
-                    // translateY: isTransitioning ? -6 : 0,
                     translateX: 6,
                     opacity: 0.6,
                   }}
                   key={openNavItem}
                 >
-                  {_navContentMap[openNavItem]}
+                  {navContentMap[openNavItem]}
                 </motion.div>
               </div>
             </motion.div>

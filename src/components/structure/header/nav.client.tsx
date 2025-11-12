@@ -100,7 +100,7 @@ export const Nav: React.FC = () => {
     _closeTimerRef.current = _win.setTimeout(() => {
       setOpenNavItem(undefined);
       // setIsExiting(false);
-    }, HOVER_CLOSE_DELAY + 300);
+    }, HOVER_CLOSE_DELAY + 150);
   };
 
   // const isTransitioning = isEntering || isExiting;
@@ -145,7 +145,7 @@ export const Nav: React.FC = () => {
               onMouseEnter={onEnterNavDropdown}
               onMouseLeave={onLeaveNavDropdown}
             >
-              <div className="size-full rounded-sm bg-linear-175 from-80% from-background/70 to-background/30 p-2 bg-blend-exclusion shadow-accent-foreground/5 shadow-lg ring-4 ring-border/50 backdrop-blur">
+              <div className="size-full rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-exclusion shadow-accent-foreground/5 shadow-lg ring-4 ring-border/50 backdrop-blur">
                 <motion.div
                   animate={{
                     opacity: 1,

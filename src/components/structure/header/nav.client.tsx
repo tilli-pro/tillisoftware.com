@@ -116,11 +116,17 @@ export const Nav: React.FC = () => {
                 <motion.div
                   animate={{
                     scaleX: 1,
-                    transition: { duration: 0.2, delay: 0.2 },
+                    scaleY: 1,
+                    transition: { duration: 0.05, delay: 0.2 },
                   }}
-                  className="absolute top-[calc(100%+0.75rem)] z-10000 h-1 w-full origin-center rounded bg-linear-to-r from-transparent via-blue-500/20 to-transparent"
-                  exit={{ scaleX: 0, transition: { duration: 0.2, delay: -1 } }}
-                  initial={{ scaleX: 0 }}
+                  className="absolute top-[calc(100%+0.75rem)] z-10000 h-1 w-full origin-center rounded bg-radial-[at_50%_0%] from-[#448de6]/50 to-transparent to-70%"
+                  exit={{
+                    scaleX: 0,
+                    scaleY: 0,
+                    transition: { duration: 0.05, delay: 0 },
+                  }}
+                  initial={{ scaleX: 0, scaleY: 0.5 }}
+                  key={item.label}
                 />
               )}
             </AnimatePresence>
@@ -165,9 +171,10 @@ export const Nav: React.FC = () => {
                   }}
                   exit={{
                     opacity: 0.4,
+                    translateY: 6,
                   }}
                   initial={{
-                    translateX: 6,
+                    translateY: -6,
                     opacity: 0.6,
                   }}
                   key={openNavItem}

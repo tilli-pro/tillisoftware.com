@@ -107,10 +107,23 @@ export const Nav: React.FC = () => {
     <nav className="group z-9999 w-full">
       <ul className="flex justify-center font-medium text-xs">
         {navItems.map((item, _index) => (
-          <li key={item.label}>
+          <li className="relative" key={item.label}>
             <Link className="rounded p-2" href={item.href}>
               {item.label}
             </Link>
+            <AnimatePresence>
+              {openNavItem === item.label && (
+                <motion.div
+                  animate={{
+                    scaleX: 1,
+                    transition: { duration: 0.2, delay: 0.2 },
+                  }}
+                  className="absolute top-[calc(100%+0.75rem)] z-10000 h-1 w-full origin-center rounded bg-linear-to-r from-transparent via-blue-500/20 to-transparent"
+                  exit={{ scaleX: 0, transition: { duration: 0.2, delay: -1 } }}
+                  initial={{ scaleX: 0 }}
+                />
+              )}
+            </AnimatePresence>
           </li>
         ))}
         <AnimatePresence>

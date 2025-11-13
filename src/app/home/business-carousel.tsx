@@ -18,7 +18,7 @@ const BusinessImage: React.FC<BusinessImageProps> = ({
   return (
     <Image
       alt={alt}
-      className="object-fit grayscale transition-[filter] duration-300 hover:grayscale-0"
+      className="object-fit drop-shadow-gray-500/20 drop-shadow-lg grayscale transition-[filter] duration-500 hover:drop-shadow-gray-500/0 hover:grayscale-0"
       height={height ?? 96}
       src={src}
       width={width}

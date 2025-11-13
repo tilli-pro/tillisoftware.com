@@ -1,4 +1,5 @@
 import { Building, DiamondPlus, LayoutGrid, SquareStar } from "lucide-react";
+import { CodeDemo } from "@/components/special/code-demo";
 import { SectionHeader } from "@/components/structure/text-header/section-header";
 import { SectionSubtitle } from "@/components/structure/text-header/section-subtitle";
 import { Button } from "@/components/ui/button";
@@ -205,7 +206,27 @@ export default function Home() {
               </div>
 
               <div className="flex h-[600px] w-full items-center justify-center gap-4">
-                <div className="h-80 w-[300px] rounded bg-gray-500/40"></div>
+                <CodeDemo
+                  className="h-80 w-[300px] rounded bg-gray-500/40 backdrop-blur"
+                  codeBaseStyle="anOldHope"
+                  sections={{
+                    react: {
+                      title: "React",
+                      lang: "typescript",
+                      code: "const f: string = 'a';",
+                    },
+                    css: {
+                      title: "CSS",
+                      lang: "css",
+                      code: "body { background: red; }",
+                    },
+                    node: {
+                      title: "Node",
+                      lang: "typescript",
+                      code: "const f: string = 'a';",
+                    },
+                  }}
+                />
                 <div className="h-80 w-[300px] rounded bg-gray-500/40"></div>
               </div>
             </div>

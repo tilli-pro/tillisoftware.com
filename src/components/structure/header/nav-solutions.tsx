@@ -13,6 +13,7 @@ import {
   ShoppingBasket,
   SquareLibrary,
   Store,
+  Theater,
   Toilet,
   ToolCase,
   UserStar,
@@ -85,9 +86,9 @@ const [
         href: "/industries/finance",
       },
       {
-        title: "Education",
-        Icon: Landmark,
-        href: "/industries/asdf",
+        title: "Entertainment",
+        Icon: Theater,
+        href: "/industries/entertainment",
       },
     ],
   },
@@ -148,7 +149,7 @@ const [
 
 const NavSolutionHeader: React.FC<SolutionCategory> = ({ title, Icon }) => {
   return (
-    <div className="ml-2 flex items-center justify-start gap-1 font-header font-medium text-accent-foreground/60 text-xs uppercase select-none self-end">
+    <div className="ml-2 flex select-none items-center justify-start gap-1 self-end font-header font-medium text-accent-foreground/60 text-xs uppercase">
       <Icon className="size-3 text-xs" size={12} />
       {title}
     </div>
@@ -163,17 +164,17 @@ const NavSolution: React.FC<SolutionNode> = ({
 }) => {
   return (
     <Link
-      className="group/solution box-border flex h-10 min-w-30 items-center justify-start gap-2 rounded bg-background/0 p-1 ring-2 ring-background/0 transition-all hover:bg-background/40 hover:ring-background/70 lg:min-w-50 select-none"
+      className="group/solution box-border flex h-10 min-w-30 select-none items-center justify-start gap-2 rounded bg-background/0 p-1 ring-2 ring-background/0 transition-all hover:bg-background/40 hover:ring-background/70 lg:min-w-50"
       href={href}
     >
       <div
         className={cn(
           iconClassName,
-          "flex size-8 items-center justify-center rounded bg-linear-to-br from-muted/60 via-80% via-blue-500/80 to-cyan-400/90 transition-all bg-size-[400%_400%] bg-top-left group-hover/solution:bg-bottom-right",
+          "flex size-8 items-center justify-center rounded bg-linear-to-br bg-size-[400%_400%] bg-top-left from-muted/60 via-80% via-blue-500/80 to-cyan-400/90 transition-all group-hover/solution:bg-bottom-right",
         )}
       >
         <Icon
-          className="text-muted-foreground group-hover/solution:text-white"
+          className="text-primary group-hover/solution:text-white"
           size={18}
         />
       </div>

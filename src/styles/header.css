@@ -7,25 +7,25 @@
   z-index: -1;
   content: " ";
   background-image: radial-gradient(
-    ellipse 12rem 20rem var(--bg-origin),
-    #325EF622,
-    transparent 40%
-  ),
-  radial-gradient(
-    ellipse 12rem 6rem var(--bg-origin),
-    #33c1ff33 10%, 
+    ellipse 24rem 12rem var(--bg-origin),
+    #325EF606,
     transparent
   ),
   radial-gradient(
-    ellipse 100% 50% at 50% 100%,
-    #325EF622 0%, 
-    #325EF61F 2%, 
-    transparent 70%
+    ellipse 36rem 12rem var(--bg-origin),
+    #33c1ff0F,
+    transparent
   ),
   radial-gradient(
-    ellipse 200% 10% var(--bg-origin),
-    #33c1ff33 1%,
-    #325EF611 8%, 
+    ellipse 100% 30% at 50% 100%,
+    #325EF606,
+    #325EF606,
+    transparent
+  ),
+  radial-gradient(
+    ellipse 100vw 12rem var(--bg-origin),
+    #33c1ff0F,
+    #325EF602,
     transparent
   );
 }

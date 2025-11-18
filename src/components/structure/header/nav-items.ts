@@ -4,19 +4,15 @@ export const navItems = [
     href: "/product",
   },
   {
-    label: "Industries",
-    href: "/industries",
+    label: "Solutions",
+    href: "/solutions",
   },
   {
     label: "Company",
     href: "/company",
   },
   {
-    label: "Resources",
-    href: "/resources",
-  },
-  {
-    label: "Pricing",
-    href: "/pricing",
+    label: "Developer",
+    href: "/dev",
   },
 ] as const;

@@ -7,6 +7,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { win } from "@/lib/utils";
 import { navItems } from "./nav-items";
 import { NavProducts } from "./nav-products";
+import { NavSolutions } from "./nav-solutions";
 
 const HOVER_OPEN_DELAY = 200;
 const HOVER_OPEN_SKIP_DELAY = 100;
@@ -16,50 +17,89 @@ type NavKey = (typeof navItems)[number]["label"];
 
 const navContentMap: Record<NavKey, React.ReactElement> = {
   Products: <NavProducts />,
-  Industries: <div>Industries</div>,
+  Solutions: <NavSolutions />,
   Company: <div>Company</div>,
-  Resources: <div>Resources</div>,
-  Pricing: <div>Pricing</div>,
+  Developer: <div>Pricing</div>,
+};
+
+const calculateInitialHaloPosition = (): Record<NavKey, string> => {
+  const _win = win();
+  if (!_win)
+    return {
+      Products: "41%",
+      Solutions: "46%",
+      Company: "52%",
+      Developer: "64%",
+    };
+
+  const screenWidth = _win.innerWidth;
+  const iDelta = 35;
+  const moveX = screenWidth > 768 ? (screenWidth - 768) / 2 : 0;
+  return {
+    Products: `${screenWidth / 2 - iDelta * 2 - moveX}px`,
+    Solutions: `${screenWidth / 2 - iDelta - moveX}px`,
+    Company: `${screenWidth / 2 + iDelta - moveX}px`,
+    Developer: `${screenWidth / 2 + iDelta * 2 - moveX}px`,
+  };
 };
 
 export const Nav: React.FC = () => {
-  const [openNavItem, setOpenNavItem] = useState<NavKey | undefined>(undefined);
+  const [openNavItem, setOpenNavItem] = useState<
+    { current?: NavKey; previous?: NavKey } | undefined
+  >(undefined);
   const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
-  const isMobile = useIsMobile();
-  // const [isEntering, setIsEntering] = useState(false);
-  // const [isExiting, setIsExiting] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+
   const _openTimerRef = useRef(0);
   const _closeTimerRef = useRef(0);
+  const submenuCoords = useRef<{ x: number; width: number }>(null);
+  const submenuContentRef =
+    useRef<Record<NavKey, { x: number; width: number }>>(null);
+  const [navHaloBgPosition, setNavHaloBgPosition] = useState<
+    Record<NavKey, string>
+  >(calculateInitialHaloPosition());
+
+  const isMobile = useIsMobile();
+
+  const _isTransitioning = isEntering || isExiting;
 
   useEffect(() => {
     const _win = win();
     if (!_win) return;
 
     const _onEnterNavItem = (e: Event, _index: number) => {
-      // setIsExiting(false);
-      // setIsEntering(true);
+      setIsExiting(false);
+      setIsEntering(true);
       _win.clearTimeout(_closeTimerRef.current);
       _openTimerRef.current = _win.setTimeout(
         () => {
-          setOpenNavItem(
-            e.target instanceof HTMLElement
-              ? (e.target.innerText as NavKey)
-              : undefined,
-          );
-          // setIsEntering(false);
+          setOpenNavItem((prev) => {
+            const newKey = (e.target as HTMLElement)?.innerText as NavKey;
+
+            if (!newKey || newKey === prev?.current) {
+              return prev;
+            }
+
+            return {
+              current: newKey,
+              previous: prev?.current ?? newKey,
+            };
+          });
+          setIsEntering(false);
         },
         openNavItem === undefined ? HOVER_OPEN_DELAY : HOVER_OPEN_SKIP_DELAY,
       );
     };
 
     const _onLeaveNavItem = () => {
-      // setIsExiting(true);
-      // setIsEntering(false);
+      setIsExiting(true);
+      setIsEntering(false);
       _win.clearTimeout(_openTimerRef.current);
       if (!isNavDropdownOpen) {
         _closeTimerRef.current = _win.setTimeout(() => {
           setOpenNavItem(undefined);
-          // setIsExiting(false);
+          setIsExiting(false);
         }, HOVER_CLOSE_DELAY);
       }
     };
@@ -67,6 +107,36 @@ export const Nav: React.FC = () => {
     const navItemElements = Array.from(document.querySelectorAll("nav ul li"));
 
     const listenerCleanup: ((e: Event) => void)[] = [];
+    const navMeasurements = navItemElements.map((el) => ({
+      key: (el as HTMLElement).innerText as NavKey,
+      measure: el.getBoundingClientRect(),
+    }));
+    submenuContentRef.current = navMeasurements.reduce(
+      (acc, curr) => {
+        acc[curr.key] = {
+          x: curr.measure.x,
+          width: curr.measure.width,
+        };
+        return acc;
+      },
+      {} as Record<NavKey, { x: number; width: number }>,
+    );
+    if (submenuContentRef.current && submenuCoords.current) {
+      const { x: submenuX } = submenuCoords.current;
+      const updatedPositions = Object.entries(submenuContentRef.current).reduce(
+        (r, [key, coords]) => {
+          const { x, width } = coords;
+          const relativeX = x - submenuX;
+          const centerX = relativeX + width / 2;
+          r[key as NavKey] = `${centerX.toFixed(2)}px`;
+          return r;
+        },
+        {} as Record<NavKey, string>,
+      );
+      console.log({ updatedPositions, innerWidth: _win.innerWidth });
+      setNavHaloBgPosition(updatedPositions);
+    }
+
     navItemElements.forEach((el, index) => {
       const enterListener = (e: Event) => _onEnterNavItem(e, index);
       listenerCleanup.push(enterListener);
@@ -84,7 +154,7 @@ export const Nav: React.FC = () => {
 
   const onEnterNavDropdown = () => {
     setIsNavDropdownOpen(true);
-    // setIsExiting(false);
+    setIsExiting(false);
     const _win = win();
     if (!_win) return;
     _win.clearTimeout(_closeTimerRef.current);
@@ -92,16 +162,14 @@ export const Nav: React.FC = () => {
 
   const onLeaveNavDropdown = () => {
     setIsNavDropdownOpen(false);
-    // setIsExiting(true);
+    setIsExiting(true);
     const _win = win();
     if (!_win) return;
     _closeTimerRef.current = _win.setTimeout(() => {
       setOpenNavItem(undefined);
-      // setIsExiting(false);
+      setIsExiting(false);
     }, HOVER_CLOSE_DELAY + 150);
   };
-
-  // const isTransitioning = isEntering || isExiting;
 
   return isMobile ? null : (
     <nav className="group z-9999 w-full">
@@ -111,29 +179,19 @@ export const Nav: React.FC = () => {
             <Link className="rounded p-2" href={item.href}>
               {item.label}
             </Link>
-            <AnimatePresence>
-              {openNavItem === item.label && (
+            {/* <AnimatePresence>
+              {openNavItem?.current === item.label && (
                 <motion.div
-                  animate={{
-                    scaleX: 1,
-                    scaleY: 1,
-                    transition: { duration: 0.05, delay: 0.2 },
-                  }}
-                  className="absolute top-[calc(100%+0.75rem)] z-10000 h-1 w-full origin-center rounded bg-radial-[at_50%_0%] from-[#448de6]/50 to-transparent to-70%"
-                  exit={{
-                    scaleX: 0,
-                    scaleY: 0,
-                    transition: { duration: 0.05, delay: 0 },
-                  }}
-                  initial={{ scaleX: 0, scaleY: 0.5 }}
-                  key={item.label}
+                  className="absolute top-[calc(100%+0.5rem)] z-999999 h-2 w-full overflow-visible rounded-t-full rounded-b-[50%] bg-radial-[at_50%_0%] from-[#33c1ff]/40 to-white/10"
+                  id="nav-underline"
+                  layoutId="nav-underline"
                 />
               )}
-            </AnimatePresence>
+            </AnimatePresence> */}
           </li>
         ))}
         <AnimatePresence>
-          {openNavItem !== undefined && (
+          {openNavItem?.current !== undefined && (
             <motion.div
               animate={{
                 scale: 1,
@@ -143,7 +201,7 @@ export const Nav: React.FC = () => {
                 skewX: 0,
                 height: "auto",
               }}
-              className="page-width absolute top-5/6 right-0 left-0 z-9999 origin-top-left"
+              className="page-width absolute top-[calc(100%-0.75rem)] right-0 left-0 z-99999 origin-top-left"
               exit={{
                 scale: 0.99,
                 y: -4,
@@ -162,7 +220,19 @@ export const Nav: React.FC = () => {
               onMouseEnter={onEnterNavDropdown}
               onMouseLeave={onLeaveNavDropdown}
             >
-              <div className="size-full rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-exclusion shadow-accent-foreground/5 shadow-lg ring-2 ring-border/50 backdrop-blur">
+              <motion.div
+                animate={{
+                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} 0%`,
+                  transition: { duration: 0.3, ease: "easeOut" },
+                }}
+                className="nav-submenu size-full min-h-48 rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-darken shadow-accent-foreground/5 shadow-lg backdrop-blur"
+                initial={{
+                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} 0%`,
+                }}
+                ref={(ref) => {
+                  submenuCoords.current = ref?.getBoundingClientRect() ?? null;
+                }}
+              >
                 <motion.div
                   animate={{
                     opacity: 1,
@@ -177,11 +247,11 @@ export const Nav: React.FC = () => {
                     translateY: -6,
                     opacity: 0.6,
                   }}
-                  key={openNavItem}
+                  key={openNavItem?.current}
                 >
-                  {navContentMap[openNavItem]}
+                  {navContentMap[openNavItem.current]}
                 </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,0 +1,46 @@
+@import "./globals.css";
+
+.nav-submenu::before {
+  @apply block absolute h-full w-full box-border border border-primary/5  -m-2 rounded backdrop-blur-2xl;
+  
+  transition: all;
+  z-index: -1;
+  content: " ";
+  background-image: radial-gradient(
+    ellipse 12rem 20rem var(--bg-origin),
+    #325EF622,
+    transparent 40%
+  ),
+  radial-gradient(
+    ellipse 12rem 6rem var(--bg-origin),
+    #33c1ff33 10%, 
+    transparent
+  ),
+  radial-gradient(
+    ellipse 100% 50% at 50% 100%,
+    #325EF622 0%, 
+    #325EF61F 2%, 
+    transparent 70%
+  ),
+  radial-gradient(
+    ellipse 200% 10% var(--bg-origin),
+    #33c1ff33 1%,
+    #325EF611 8%, 
+    transparent
+  );
+}
+
+.nav-solutions {
+  @apply grid w-full gap-2;
+  
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 20px repeat(8, minmax(0, 1fr));
+  align-items: end;
+  
+  @variant lg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 20px repeat(4, minmax(0, 1fr));
+  }
+  
+  grid-auto-flow: column;
+}

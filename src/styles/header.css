@@ -8,24 +8,29 @@
   content: " ";
   background-image: radial-gradient(
     ellipse 24rem 12rem var(--bg-origin),
-    #325EF606,
+    #325EF601,
     transparent
   ),
   radial-gradient(
     ellipse 36rem 12rem var(--bg-origin),
-    #33c1ff0F,
+    #33c1ff01,
     transparent
   ),
   radial-gradient(
     ellipse 100% 30% at 50% 100%,
-    #325EF606,
-    #325EF606,
+    #325EF601,
+    #325EF601,
     transparent
   ),
   radial-gradient(
     ellipse 100vw 12rem var(--bg-origin),
-    #33c1ff0F,
+    #33c1ff03,
     #325EF602,
+    transparent
+  ),
+  radial-gradient(
+    ellipse 4rem 0.5rem var(--bg-origin),
+    #33c1ff,
     transparent
   );
 }

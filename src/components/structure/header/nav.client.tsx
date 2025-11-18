@@ -222,12 +222,12 @@ export const Nav: React.FC = () => {
             >
               <motion.div
                 animate={{
-                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} 0%`,
+                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} -0.35rem`,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 className="nav-submenu size-full min-h-48 rounded-sm bg-linear-175 from-80% from-background/60 to-background/20 p-2 bg-blend-darken shadow-accent-foreground/5 shadow-lg backdrop-blur"
                 initial={{
-                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} 0%`,
+                  "--bg-origin": `at ${navHaloBgPosition[openNavItem.current]} -0.5rem`,
                 }}
                 ref={(ref) => {
                   submenuCoords.current = ref?.getBoundingClientRect() ?? null;

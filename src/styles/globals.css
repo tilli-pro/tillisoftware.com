@@ -156,7 +156,7 @@
 }
 
 .banner .inner .set img {
-  @apply object-fill max-w-40 mx-2 box-border;
+  @apply object-fill max-w-40 mx-8 box-border;
 }
 
 .banner:hover .inner .set {

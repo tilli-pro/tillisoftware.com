@@ -11,24 +11,15 @@ import { BusinessCarousel } from "./business-carousel";
 import { HeroImage } from "./hero";
 import { SolutionsCarousel } from "./solutions-carousel";
 
-const sampleReactCode = `
-import { useState } from "react";
-import { Subscribe } from "@tilli-pro/nudge/react";
-
-const Subscribe: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
-  
-  return (<>
-    <input 
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      disabled={loading}
-    />
-    <Subscribe email={email} loading={loading}>
-  </>);
-}
-`.slice(1);
+import "@wooorm/starry-night/style/both";
+import {
+  sampleDotNetCode,
+  sampleNodeCode,
+  samplePhpCode,
+  samplePythonCode,
+  sampleReactCode,
+  sampleRubyCode,
+} from "./sample-code";
 
 export default function Home() {
   return (
@@ -54,7 +45,8 @@ export default function Home() {
               <span>Transform</span>
               <span>
                 <ContainerTextFlip
-                  className="bg-none! bg-transparent font-normal text-5xl shadow-none!"
+                  className="bg-none! font-normal text-5xl shadow-none!"
+                  interval={2000}
                   words={[
                     "Billing",
                     "Messaging",
@@ -65,7 +57,7 @@ export default function Home() {
                 />
               </span>
               <br />
-              <span>into Seamless Digital Engagement</span>
+              <span>into Engagement</span>
             </h1>
             <p>
               Powerful tools for automation, invoicing, and financial workflows.
@@ -310,26 +302,48 @@ export default function Home() {
 
               <div className="flex h-[600px] w-full items-center justify-center gap-4">
                 <CodeDemo
-                  className="w-[440px] rounded bg-background/20 backdrop-blur"
-                  codeBaseStyle="atelierDuneDark"
-                  sections={{
-                    react: {
-                      title: "React",
-                      lang: "typescriptreact",
+                  blocks={[
+                    {
+                      tabTitle: "React",
+                      fileName: "SubscribeToUpdates.tsx",
+                      lang: "ts",
                       code: sampleReactCode,
                       speed: 12,
                     },
-                    ".NET": {
-                      title: ".NET",
-                      lang: "dotnet",
-                      code: "body { background: red; }",
+                    {
+                      tabTitle: "Node",
+                      fileName: "subscribeUser.ts",
+                      lang: "ts",
+                      code: sampleNodeCode,
+                      speed: 18,
                     },
-                    node: {
-                      title: "Node",
-                      lang: "typescript",
-                      code: "const f: string = 'a';",
+                    {
+                      tabTitle: "Python",
+                      fileName: "subscribe_user.py",
+                      lang: "python",
+                      code: samplePythonCode,
                     },
-                  }}
+                    {
+                      tabTitle: ".NET",
+                      fileName: "SubscribeUser.cs",
+                      lang: "cs",
+                      code: sampleDotNetCode,
+                    },
+                    {
+                      tabTitle: "PHP",
+                      fileName: "subscribe_user.php",
+                      lang: "text.html.php",
+                      code: samplePhpCode,
+                    },
+                    {
+                      tabTitle: "Ruby",
+                      fileName: "subscribe_user.rb",
+                      lang: "ruby",
+                      code: sampleRubyCode,
+                    },
+                  ]}
+                  className="w-[400px] rounded bg-background/20 backdrop-blur"
+                  speed={16}
                 />
                 <div className="h-80 w-[300px] rounded bg-gray-500/40"></div>
               </div>

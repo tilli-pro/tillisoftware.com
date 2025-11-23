@@ -15,7 +15,7 @@ export const SectionSubtitle: React.FC<SectionSubtitleProps> = ({
   return (
     <div
       className={cn(
-        "flex items-center gap-1 font-header font-medium text-muted-foreground text-sm uppercase",
+        "flex items-center gap-1 font-header font-medium text-muted-foreground text-sm uppercase leading-none",
         subtitleClassName,
       )}
     >

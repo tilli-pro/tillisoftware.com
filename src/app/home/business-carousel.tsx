@@ -1,5 +1,7 @@
 "use client";
+import { easeOut, motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
+import type React from "react";
 import { useEffect, useState } from "react";
 import { win } from "@/lib/utils";
 
@@ -43,10 +45,20 @@ const images = [
 
 const totalWidth = images.reduce((acc, image) => acc + (image.width ?? 96), 0);
 
-export const BusinessCarousel: React.FC = () => {
+interface BusinessCarouselProps {
+  title?: React.ReactElement;
+}
+export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({
+  title,
+}) => {
   const [totalSets, setTotalSets] = useState(
     Math.ceil((win()?.innerWidth ?? totalWidth) / totalWidth) + 2,
   );
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 200, 400], [0, 0.25, 1], {
+    clamp: true,
+    ease: easeOut,
+  });
 
   useEffect(() => {
     const _win = win();
@@ -66,20 +78,23 @@ export const BusinessCarousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="banner relative min-h-24 w-full overflow-hidden">
-      <div className="inner absolute flex items-center">
-        {Array.from({ length: totalSets ?? 1 }).map((_, index) => (
-          <div
-            className="set"
-            key={index.toString()}
-            // style={{ width: totalWidth + images.length * 6 }}
-          >
-            {images.map((image) => (
-              <BusinessImage key={image.src} {...image} />
-            ))}
-          </div>
-        ))}
+    <motion.div style={{ opacity }}>
+      {title}
+      <div className="banner relative min-h-24 w-full overflow-hidden">
+        <div className="inner absolute flex items-center">
+          {Array.from({ length: totalSets ?? 1 }).map((_, index) => (
+            <div
+              className="set"
+              key={index.toString()}
+              // style={{ width: totalWidth + images.length * 6 }}
+            >
+              {images.map((image) => (
+                <BusinessImage key={image.src} {...image} />
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

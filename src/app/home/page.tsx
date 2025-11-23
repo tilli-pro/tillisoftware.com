@@ -1,10 +1,34 @@
 import { Building, DiamondPlus, LayoutGrid, SquareStar } from "lucide-react";
+import Image from "next/image";
+import { Suspense } from "react";
 import { CodeDemo } from "@/components/special/code-demo";
 import { SectionHeader } from "@/components/structure/text-header/section-header";
 import { SectionSubtitle } from "@/components/structure/text-header/section-subtitle";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Button } from "@/components/ui/button";
+import { ContainerTextFlip } from "@/components/ui/text/container-flip-text";
 import { BusinessCarousel } from "./business-carousel";
+import { HeroImage } from "./hero";
 import { SolutionsCarousel } from "./solutions-carousel";
+
+const sampleReactCode = `
+import { useState } from "react";
+import { Subscribe } from "@tilli-pro/nudge/react";
+
+const Subscribe: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  
+  return (<>
+    <input 
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      disabled={loading}
+    />
+    <Subscribe email={email} loading={loading}>
+  </>);
+}
+`.slice(1);
 
 export default function Home() {
   return (
@@ -25,17 +49,23 @@ export default function Home() {
               tilli<sup>X</sup>
             </span>
           </Button>
-          <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-8 py-4">
+          <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-8 py-4">
             <h1 className="text-5xl">
-              Transform{" "}
-              <span className="text-amber-950 text-shadow-blue-200 text-shadow-sm">
-                Billing
-              </span>{" "}
-              and{" "}
-              <span className="text-amber-950 text-shadow-blue-200 text-shadow-sm">
-                Payments
-              </span>{" "}
-              into Seamless Digital Engagement
+              <span>Transform</span>
+              <span>
+                <ContainerTextFlip
+                  className="bg-none! bg-transparent font-normal text-5xl shadow-none!"
+                  words={[
+                    "Billing",
+                    "Messaging",
+                    "Payments",
+                    "Campaigns",
+                    "Invoicing",
+                  ]}
+                />
+              </span>
+              <br />
+              <span>into Seamless Digital Engagement</span>
             </h1>
             <p>
               Powerful tools for automation, invoicing, and financial workflows.
@@ -49,16 +79,72 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="md:min-h-48" id="hero-images"></div>
+        {/* <FinancialMetricsCard
+          metrics={[
+            { currency: "US$", label: "Total Amount Due", value: "5000.00" },
+            { currency: "US$", label: "Current Balance", value: "620.00" },
+            { currency: "US$", label: "asdf2", value: "320.00" },
+            { currency: "US$", label: "asdf", value: "4380.00" },
+          ]}
+        />
 
-        <section className="my-16 w-full">
-          <div className="page-width">
-            <h2 className="text-center text-xl">
-              Supporting businesses across the globe
-            </h2>
-          </div>
+        <AddAccountModal
+          accounts={[
+            {
+              email: "john.smith@gmail.com",
+              id: "112321",
+              name: "asdf",
+              overdue: 123,
+              unpaidBalance: 233,
+              address: "fffffff",
+            },
+            {
+              email: "ali.saberi@",
+              id: "112321",
+              name: "asdf",
+              overdue: 123,
+              unpaidBalance: 233,
+              address: "fffffff",
+            },
+            {
+              email: "asdf",
+              id: "112321",
+              name: "asdf",
+              overdue: 123,
+              unpaidBalance: 233,
+              address: "fffffff",
+            },
+          ]}
+        />
+
+        <InvoiceTable
+          invoices={[
+            {
+              amountBalance: 123,
+              dueDate: "12/9",
+              id: "123",
+              invoiceAmount: 111,
+              invoiceDate: "12/12",
+              number: "1222",
+              vendor: "asdf inc",
+              totalAmount: 333,
+            },
+          ]}
+        /> */}
+
+        <HeroImage />
+
+        <section className="my-8 w-full">
           <div className="my-8 flex h-16 w-full flex-col justify-center">
-            <BusinessCarousel />
+            <BusinessCarousel
+              title={
+                <div className="page-width mb-8">
+                  <h2 className="text-center text-xl">
+                    Supporting businesses across the globe
+                  </h2>
+                </div>
+              }
+            />
           </div>
         </section>
 
@@ -92,6 +178,9 @@ export default function Home() {
 
         <section className="over-page-width mt-32">
           <div className="relative w-full overflow-hidden rounded-t-4xl bg-linear-to-b from-[#325EF6]/5 to-90% to-background px-4 md:rounded-lg">
+            <Suspense>
+              <BackgroundBeams className="-z-1" />
+            </Suspense>
             <div className="-z-1 absolute top-0 left-0 h-full w-full overflow-hidden">
               <div className="-top-1/2 absolute left-0 h-full w-2/3 rounded-full bg-conic from-[#CAE1FF80] via-[#004DFF80] to-[#A8CFEA80] blur-3xl" />
               <div className="absolute top-0 right-0 h-2/3 w-2/3 rounded-full bg-conic/shorter from-[#CAE1FF80] via-[#004DFFFF] to-[#A8CFEA80] blur-3xl" />
@@ -122,8 +211,22 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="h-[600px] w-full rounded-t-2xl bg-black/50" />
+              <div className="flex w-full items-start justify-center overflow-hidden rounded-t-2xl">
+                <Image
+                  alt="modern tools"
+                  height={765}
+                  src="/assets/pages/home/modern_tools.png"
+                  width={1668}
+                />
+              </div>
             </div>
+            <div
+              className="absolute right-0 bottom-0 left-0 z-10000 h-100 w-full bg-linear-to-b from-50% from-transparent to-100% to-background"
+              // style={{
+              //   backgroundImage:
+              //     "radial-gradient(ellipse at 50% 100%, var(--background) 0%, lab(100%, 0, 0) 20%, lab(100%, 0, 0) 100%)",
+              // }}
+            ></div>
           </div>
         </section>
 
@@ -207,17 +310,18 @@ export default function Home() {
 
               <div className="flex h-[600px] w-full items-center justify-center gap-4">
                 <CodeDemo
-                  className="h-80 w-[300px] rounded bg-gray-500/40 backdrop-blur"
-                  codeBaseStyle="anOldHope"
+                  className="w-[440px] rounded bg-background/20 backdrop-blur"
+                  codeBaseStyle="atelierDuneDark"
                   sections={{
                     react: {
                       title: "React",
-                      lang: "typescript",
-                      code: "const f: string = 'a';",
+                      lang: "typescriptreact",
+                      code: sampleReactCode,
+                      speed: 12,
                     },
-                    css: {
-                      title: "CSS",
-                      lang: "css",
+                    ".NET": {
+                      title: ".NET",
+                      lang: "dotnet",
                       code: "body { background: red; }",
                     },
                     node: {

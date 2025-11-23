@@ -1,6 +1,9 @@
 "use client";
 
+// import { common, createStarryNight } from "@wooorm/starry-night";
+// import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { useEffect, useMemo, useRef, useState } from "react";
+// import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import * as styles from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { cn } from "@/lib/utils";
@@ -21,16 +24,21 @@ interface CodeDemoProps {
       lang: string;
       code: string;
       footer?: string | React.ReactElement;
+      speed?: number;
     }
   >;
   codeBaseStyle?: keyof typeof STYLES;
   codeExtraStyle?: React.CSSProperties;
+  speed?: number;
+  intersectionOpts?: IntersectionObserverInit;
 }
 export const CodeDemo: React.FC<CodeDemoProps> = ({
   className,
   sections,
   codeBaseStyle,
   codeExtraStyle = {},
+  speed = 34,
+  intersectionOpts = { threshold: 0.7 },
 }) => {
   const demoRef = useRef<HTMLDivElement>(null);
   const sectionEntries = useMemo(() => Object.entries(sections), [sections]);
@@ -44,9 +52,15 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
     Object.fromEntries(sectionEntries.map(([key]) => [key, ""])),
   );
   const [currentTab, setCurrentTab] = useState(defaultTab);
+  const [sectionHeights, setSectionHeights] = useState<Record<string, number>>(
+    {},
+  );
+  const measurementRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const hasMeasured = useRef<Record<string, boolean>>({});
 
   const codeStyle = STYLES[codeBaseStyle ?? "a11yDark"];
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <changes to sections is captured by sectionEntries memoization>
   useEffect(() => {
     sectionOriginalCode.current = Object.fromEntries(
       sectionEntries.map(([key, section]) => [key, section.code]),
@@ -54,30 +68,27 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
 
     let interval: NodeJS.Timeout;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            interval = setInterval(() => {
-              setSectionCodes((prev) => {
-                const originalCode = sectionOriginalCode.current[currentTab];
-                const currentCode = prev[currentTab];
-                if (currentCode.length >= originalCode.length) {
-                  clearInterval(interval);
-                  return prev;
-                }
-                const nextLength = currentCode.length + 1;
-                return {
-                  ...prev,
-                  [currentTab]: originalCode.slice(0, nextLength),
-                };
-              });
-            }, 34);
-          }
-        });
-      },
-      { threshold: 0.7 },
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          interval = setInterval(() => {
+            setSectionCodes((prev) => {
+              const originalCode = sectionOriginalCode.current[currentTab];
+              const currentCode = prev[currentTab];
+              if (currentCode.length >= originalCode.length) {
+                clearInterval(interval);
+                return prev;
+              }
+              const nextLength = currentCode.length + 1;
+              return {
+                ...prev,
+                [currentTab]: originalCode.slice(0, nextLength),
+              };
+            });
+          }, sections[currentTab]?.speed ?? speed);
+        }
+      });
+    }, intersectionOpts);
 
     if (demoRef.current) {
       observer.observe(demoRef.current);
@@ -89,7 +100,31 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
       }
       observer.disconnect();
     };
-  }, [sectionEntries, currentTab]);
+  }, [sectionEntries, currentTab, speed, intersectionOpts]);
+
+  // Reset measurements when sections or styles change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <we need to rerun these on these specific prop changes>
+  useEffect(() => {
+    hasMeasured.current = {};
+    setSectionHeights({});
+  }, [sectionEntries, codeExtraStyle, codeBaseStyle]);
+
+  // Callback ref that measures immediately when element is attached
+  const measurementRef =
+    (sectionKey: string) => (el: HTMLDivElement | null) => {
+      if (el && !hasMeasured.current[sectionKey]) {
+        measurementRefs.current[sectionKey] = el;
+        // Measure immediately in the same render cycle
+        const rect = el.getBoundingClientRect();
+        if (rect.height > 0) {
+          hasMeasured.current[sectionKey] = true;
+          setSectionHeights((prev) => ({
+            ...prev,
+            [sectionKey]: rect.height,
+          }));
+        }
+      }
+    };
 
   const onTabChange = (value: string) => {
     setSectionCodes((prev) => ({
@@ -124,15 +159,18 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
                 </div>
               )}
             </div>
-            <CardContent className="h-full flex-1 pb-4">
+            <CardContent className="h-full flex-1">
               <SyntaxHighlighter
                 customStyle={{
                   // backgroundColor: "rgb(42, 54, 86, 0.2)",
                   padding: "1rem",
                   borderRadius: "0.25rem",
                   fontSize: "0.75rem",
-                  height: "100%",
                   filter: "saturate(1.5) brightness(1.2)",
+                  overflow: "scroll",
+                  transition: "height 0.3s ease-out",
+                  willChange: "height",
+                  height: sectionHeights[sectionKey] ?? 100,
                   ...codeExtraStyle,
                 }}
                 language={section.lang}
@@ -145,6 +183,35 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
           </TabsContent>
         ))}
       </Tabs>
+      {/* Hidden measurement container - always rendered for instant measurement */}
+      <div
+        style={{
+          position: "absolute",
+          visibility: "hidden",
+          pointerEvents: "none",
+          top: 0,
+          left: 0,
+        }}
+      >
+        {sectionEntries.map(([sectionKey, section]) => (
+          <div key={`measure-${sectionKey}`} ref={measurementRef(sectionKey)}>
+            <SyntaxHighlighter
+              customStyle={{
+                padding: "1rem",
+                borderRadius: "0.25rem",
+                fontSize: "0.75rem",
+                filter: "saturate(1.5) brightness(1.2)",
+                overflow: "scroll",
+                ...codeExtraStyle,
+              }}
+              language={section.lang}
+              style={codeStyle}
+            >
+              {section.code}
+            </SyntaxHighlighter>
+          </div>
+        ))}
+      </div>
     </Card>
   );
 };

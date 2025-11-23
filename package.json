@@ -10,6 +10,7 @@
     "format": "biome lint --write --unsafe ./src"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@hookform/resolvers": "^5.2.2",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -38,6 +39,7 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@tilli-pro/nudge.js": "^0.1.0",
+    "@wooorm/starry-night": "^3.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -45,8 +47,8 @@
     "embla-carousel-auto-scroll": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.552.0",
     "motion": "^12.23.24",

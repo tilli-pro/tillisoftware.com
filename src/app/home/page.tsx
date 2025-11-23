@@ -53,6 +53,7 @@ export default function Home() {
                     "Payments",
                     "Campaigns",
                     "Invoicing",
+                    "Notifications",
                   ]}
                 />
               </span>

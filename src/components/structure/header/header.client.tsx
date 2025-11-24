@@ -89,7 +89,7 @@ export const Header: React.FC = () => {
         <div className="absolute left-0 z-9999 ml-4 font-header font-medium text-2xl tracking-normal">
           <NextLink href="/">tilli.</NextLink>
         </div>
-        <div className="flex flex-1 justify-end md:justify-center md:mx-12">
+        <div className="flex flex-1 justify-end md:mx-12 md:justify-center">
           <Nav />
         </div>
         <div className="absolute right-0 z-9999 mr-4 hidden items-center gap-2 text-xs md:flex">

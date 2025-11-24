@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "@/components/ui/links/inline";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
   Products: [
@@ -58,23 +59,23 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
   Developer: [
     {
       text: "Documentation",
-      href: "",
+      href: "/docs",
     },
     {
       text: "API Reference",
-      href: "",
+      href: "/docs/api",
     },
     {
       text: "SDKs & Tools",
-      href: "",
-    },
-    {
-      text: "Status",
-      href: "",
+      href: "/docs/sdk",
     },
     {
       text: "Help Center",
-      href: "",
+      href: "/help",
+    },
+    {
+      text: "Status",
+      href: "/status",
     },
   ],
   Company: [
@@ -105,33 +106,61 @@ export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-black py-16 text-white">
       <div className="page-width">
-        <div className="mb-4 grid w-full grid-flow-col grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-5 lg:grid-rows-1">
+        <div className="group/footer-links mb-4 grid w-full grid-flow-col-dense grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-5 lg:grid-rows-1">
           {Object.entries(footerSiteMapLinks).map(([section, links]) => (
             <div
-              className="flex flex-col items-start justify-start gap-4 text-left"
+              className="mb-4 flex flex-col items-start justify-start gap-4 text-left"
               key={section}
             >
-              <h3 className="font-sans">{section}</h3>
-              <div className="flex min-w-24 max-w-32 flex-col items-start gap-2">
+              <h3 className="font-sans transition-colors group-has-[a:hover]/footer-links:text-muted-foreground">
+                {section}
+              </h3>
+              <div className="flex flex-col items-start gap-1">
                 {links.map(({ text, href }) => (
                   <Link
-                    className="text-muted-foreground hover:text-muted-foreground"
+                    className={cn(
+                      "text-muted-foreground transition-colors duration-150 hover:text-white",
+                      {
+                        "font-light": text === "Status",
+                        "group/status": text === "Status",
+                      },
+                    )}
                     href={href}
                     key={text}
                   >
                     {text}
+                    {/* TODO: make this not static */}
+                    {text === "Status" && (
+                      <div className="relative flex items-center rounded-full ring-1 ring-transparent transition-all group-hover/status:ring-green-500">
+                        <div className="mx-1.5 size-1 origin-center animate-ping rounded-full bg-green-500 transition-all group-hover/status:size-2 group-hover/status:animate-pulse" />
+                        <div className="absolute left-1 size-2 rounded-full bg-green-600 opacity-50 transition-all group-hover/status:opacity-0"></div>
+                        <span className="w-0 overflow-hidden font-medium text-xs uppercase tracking-tightest opacity-0 transition-[width,opacity] duration-150 ease-in group-hover/status:w-23 group-hover/status:opacity-100">
+                          Operational
+                        </span>
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>
             </div>
           ))}
           <div className="flex flex-col items-start justify-start gap-4 text-left">
-            <h3 className="font-sans">Get Started Today</h3>
-            <div className="flex min-w-24 max-w-32 flex-col items-start gap-2">
-              <Link href="/free-trial" type="gradient">
+            <h3 className="font-sans transition-colors group-has-[a:hover]/footer-links:text-muted-foreground">
+              Get Started Today
+            </h3>
+            <div className="flex flex-col items-start gap-1">
+              <Link
+                className="transition-colors duration-700 hover:text-transparent! group-has-[a:hover]/footer-links:text-muted-foreground group-has-[a:hover]/footer-links:duration-150"
+                href="/free-trial"
+                type="gradient"
+              >
                 Start a Free Trial
               </Link>
-              <Link href="/demo" type="gradient">
+              <Link
+                className="transition-colors duration-700 hover:text-transparent! group-has-[a:hover]/footer-links:text-muted-foreground group-has-[a:hover]/footer-links:duration-150"
+                href="/demo"
+                type="gradient"
+              >
                 Request a Demo
               </Link>
             </div>

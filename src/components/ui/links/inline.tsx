@@ -1,10 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import NextLink, { type LinkProps } from "next/link";
-import { use } from "react";
 import { cn } from "@/lib/utils";
 import { LinkArrow } from "./link-arrow";
 
-const inlineLinkVariants = cva("inline-flex gap-1 items-center", {
+const inlineLinkVariants = cva("inline-flex items-center gap-1", {
   variants: {
     type: {
       default: ["text-muted-foreground hover:text-primary"],

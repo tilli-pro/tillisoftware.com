@@ -134,7 +134,6 @@ export const Nav: React.FC = () => {
         },
         {} as Record<NavKey, string>,
       );
-      console.log({ updatedPositions, innerWidth: _win.innerWidth });
       setNavHaloBgPosition(updatedPositions);
     }
 

@@ -39,20 +39,16 @@ const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
       href: "/pricing",
     },
     {
-      text: "Request a Demo",
-      href: "/resources/demo",
-    },
-    {
-      text: "Start a Free Trial",
-      href: "/resources/trial",
-    },
-    {
       text: "Industries",
       href: "/industries",
     },
     {
+      text: "Use Cases",
+      href: "/use",
+    },
+    {
       text: "Contact",
-      href: "/resources/contact",
+      href: "/contact",
     },
   ],
   Developer: [
@@ -114,10 +110,10 @@ export const Footer: React.FC = () => {
               <div className="-top-16 -left-16 absolute hidden h-0 w-full opacity-0 transition-all duration-300 group-has-[a:hover]/footer-link-list:h-[3px] group-has-[a:hover]/footer-link-list:opacity-100 group-has-[a:hover]/footer-link-list:duration-300 lg:block">
                 <div className="size-full bg-[linear-gradient(to_right,#00000000,#5C9BF4_33.5%,#2E67F8_78.8%,#6CD3EF_90%,#00000000_100%)] bg-position-[200%_0] bg-size-[100%_100%] transition-all duration-300 hover:bg-position-[200%_0] group-has-[a:hover]/footer-link-list:bg-position-[100%_0]" />
               </div>
-              <h3 className="font-sans transition-colors group-has-[a:hover]/footer-links:text-muted-foreground">
+              <h3 className="font-sans transition-colors group-has-[a:hover]/footer-links:text-muted-foreground group-has-[div.abner:hover]/footer-links:text-muted-foreground">
                 {section}
               </h3>
-              <div className="flex flex-col items-start gap-1">
+              <div className="abner flex flex-col items-start gap-1">
                 {links.map(({ text, href }) => (
                   <Link
                     className={cn(
@@ -153,7 +149,7 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col items-start gap-1">
               <Link
                 className="transition-colors duration-700 hover:text-transparent! group-has-[a:hover]/footer-links:text-muted-foreground group-has-[a:hover]/footer-links:duration-150"
-                href="/free-trial"
+                href="/trial"
                 type="gradient"
               >
                 Start a Free Trial
@@ -168,15 +164,18 @@ export const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-end justify-between md:flex-row">
-          <div className="flex flex-col flex-wrap items-center gap-4 lg:max-w-[40%] lg:flex-nowrap lg:items-start">
-            <div
-              className="w-full font-header font-medium text-3xl"
-              id="logo-footer"
-            >
-              tilli.
+        <div className="flex flex-col items-end justify-between lg:flex-row">
+          <div className="flex max-w-full flex-col items-start gap-4 lg:max-w-[40%] lg:items-start">
+            <div className="w-full text-center md:text-left" id="logo-footer">
+              <Link
+                className="font-header font-medium text-3xl text-shadow-black text-shadow-lg text-white transition-all hover:text-shadow-white/10 hover:text-white"
+                href="/"
+                type="default"
+              >
+                tilli.
+              </Link>
             </div>
-            <p className="text-sm">
+            <p className="text-center text-sm md:text-left">
               We{"\u2019"}re devoted to creating a global consumer environment
               that feels more personalized and connected than ever before.
               Through cloud-based, customer-centric tools, we{"\u2019"}re
@@ -184,13 +183,13 @@ export const Footer: React.FC = () => {
               businesses and people connect, collaborate, and make payments in
               real-time.
             </p>
-            <div className="text-muted-foreground text-xs">
+            <div className="w-full text-center text-muted-foreground text-xs md:text-left">
               © {new Date().getFullYear()}{" "}
               <span className="font-header font-medium text-white">tilli</span>.
               all rights reserved.
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 lg:items-end">
+          <div className="mt-8 flex w-full flex-col items-center gap-4 md:items-start lg:items-end">
             <div className="flex items-center justify-center gap-4 lg:justify-end">
               <Link
                 className="text-muted-foreground transition-colors hover:text-white"

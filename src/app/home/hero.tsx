@@ -34,6 +34,7 @@ export const HeroImage: React.FC = () => {
         alt="hero"
         className="over-page-width"
         height={785}
+        loading="eager"
         src="/assets/pages/home/hero.png"
         width={1339}
       />

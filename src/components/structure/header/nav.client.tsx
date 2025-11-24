@@ -19,7 +19,7 @@ const navContentMap: Record<NavKey, React.ReactElement> = {
   Products: <NavProducts />,
   Solutions: <NavSolutions />,
   Company: <div>Company</div>,
-  Developer: <div>Pricing</div>,
+  Developer: <div>Developer</div>,
 };
 
 const calculateInitialHaloPosition = (): Record<NavKey, string> => {
@@ -179,15 +179,6 @@ export const Nav: React.FC = () => {
             <Link className="rounded p-2" href={item.href}>
               {item.label}
             </Link>
-            {/* <AnimatePresence>
-              {openNavItem?.current === item.label && (
-                <motion.div
-                  className="absolute top-[calc(100%+0.5rem)] z-999999 h-2 w-full overflow-visible rounded-t-full rounded-b-[50%] bg-radial-[at_50%_0%] from-[#33c1ff]/40 to-white/10"
-                  id="nav-underline"
-                  layoutId="nav-underline"
-                />
-              )}
-            </AnimatePresence> */}
           </li>
         ))}
         <AnimatePresence>
@@ -239,6 +230,7 @@ export const Nav: React.FC = () => {
                     translateX: 0,
                     translateY: 0,
                   }}
+                  className="h-full w-full"
                   exit={{
                     opacity: 0.4,
                     translateY: 6,

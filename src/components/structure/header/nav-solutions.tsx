@@ -5,28 +5,22 @@ import {
   Building,
   DollarSign,
   Factory,
+  Flame,
   Fuel,
   Headset,
   Landmark,
+  LaptopMinimalCheck,
   MonitorCloud,
   PhoneCall,
   ShoppingBasket,
   SquareLibrary,
   Store,
   Theater,
-  Toilet,
   ToolCase,
   UserStar,
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-
-type SolutionRender = {
-  name: string | React.ReactElement;
-  Icon: LucideIcon;
-  iconClassName?: string;
-  href: string;
-};
 
 type SolutionBase = {
   title: string | React.ReactElement;
@@ -113,14 +107,14 @@ const [
         href: "/use/saas",
       },
       {
-        title: "Customer Experience",
-        Icon: UserStar,
+        title: "Digital Experience",
+        Icon: LaptopMinimalCheck,
         href: "/use/cx",
       },
       {
-        title: "Idk I need a 4th",
-        Icon: Factory,
-        href: "/use/stuff",
+        title: "CRM",
+        Icon: UserStar,
+        href: "/use/crm",
       },
     ],
   },
@@ -130,7 +124,7 @@ const [
     solutions: [
       {
         title: "Startup",
-        Icon: Toilet,
+        Icon: Flame,
         href: "/solutions/startup",
       },
       {
@@ -164,7 +158,7 @@ const NavSolution: React.FC<SolutionNode> = ({
 }) => {
   return (
     <Link
-      className="group/solution box-border flex h-10 min-w-30 select-none items-center justify-start gap-2 rounded bg-background/0 p-1 ring-2 ring-background/0 transition-all hover:bg-background/40 hover:ring-background/70 lg:min-w-50"
+      className="group/solution box-border flex h-10 min-w-30 select-none items-center justify-start gap-2 rounded bg-background/0 p-1 ring-2 ring-background/0 transition-all hover:bg-background/80 hover:ring-background/90 lg:min-w-50"
       href={href}
     >
       <div

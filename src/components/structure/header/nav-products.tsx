@@ -1,6 +1,6 @@
 "use client";
 import type { LucideIcon } from "lucide-react";
-import { Send } from "lucide-react";
+import { Archive, Coins, MonitorCloud, Send } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -15,15 +15,18 @@ const ProductContent: React.FC<ProductContentProps> = ({
   className,
 }) => {
   return (
-    <Link href={`/products/${product.toLowerCase()}`}>
+    <Link
+      className="h-full min-w-[120px] flex-1 transition-all duration-500 hover:flex-1! group-has-[a:hover]/products:flex-0"
+      href={`/products/${product.toLowerCase()}`}
+    >
       <div
         className={cn(
           className,
-          "box-border flex h-full w-full items-center justify-start self-stretch rounded p-2 ring-1 ring-border/50 transition hover:bg-accent/40 hover:ring-2 hover:ring-accent/70",
+          "relative box-border flex h-full w-full items-center justify-center rounded p-2 ring-1 ring-border/50 transition-all hover:bg-accent/40 hover:ring-2 hover:ring-accent/70",
         )}
       >
-        <div className="flex size-12 items-center justify-center">
-          <Icon />
+        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground opacity-20">
+          <Icon size={80} />
         </div>
         <div className="font-header">{product}</div>
       </div>
@@ -33,20 +36,17 @@ const ProductContent: React.FC<ProductContentProps> = ({
 
 const products: ProductContentProps[] = [
   { product: "nudge", Icon: Send },
-  { product: "tilliPay", Icon: Send },
-  { product: "tilliX", Icon: Send },
-  { product: "tilliArc", Icon: Send },
+  { product: "tilliPay", Icon: Coins },
+  { product: "tilliX", Icon: MonitorCloud },
+  { product: "tilliArc", Icon: Archive },
 ];
 
 export const NavProducts: React.FC = () => {
   return (
-    <div className="flex w-full items-stretch justify-center gap-2">
-      <div className="grid h-full min-w-1/3 grid-cols-1 items-stretch justify-stretch gap-1 md:grid-cols-2">
-        {products.map((product) => (
-          <ProductContent key={product.product} {...product} />
-        ))}
-      </div>
-      <div className="h-[200px] flex-1">asdf</div>
+    <div className="group/products flex h-50 w-full items-stretch gap-2">
+      {products.map((product) => (
+        <ProductContent key={product.product} {...product} />
+      ))}
     </div>
   );
 };

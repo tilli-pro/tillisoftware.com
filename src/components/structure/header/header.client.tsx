@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
-import { Link } from "@/components/ui/link";
+import { LinkButton } from "@/components/ui/links/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Nav } from "./nav.client";
@@ -85,18 +85,22 @@ export const Header: React.FC = () => {
       )}
     >
       <div className="header-blur pointer-events-none absolute inset-0 z-0 w-full bg-linear-to-t from-background/0 to-background/30 backdrop-blur-lg" />
-      <div className="page-width z-10 flex h-full items-center gap-4 py-2">
-        <div className="z-9999 w-24 min-w-24 flex-1 font-header font-medium text-2xl tracking-normal md:flex-0">
+      <div className="page-width relative z-10 flex h-full items-center gap-4 py-2">
+        <div className="absolute left-0 z-9999 ml-4 font-header font-medium text-2xl tracking-normal">
           <NextLink href="/">tilli.</NextLink>
         </div>
         <div className="flex flex-1 justify-center">
           <Nav />
         </div>
-        <div className="z-9999 hidden w-24 flex-0 items-center gap-4 text-xs md:flex">
-          {/* <Link href="/pricing">Pricing</Link> */}
-          <Link asButton href="/trial">
-            Free Trial
-          </Link>
+        <div className="absolute right-0 z-9999 mr-4 hidden items-center gap-2 text-xs md:flex">
+          <LinkButton
+            className="hidden lg:flex"
+            href="/pricing"
+            variant="ghost"
+          >
+            Pricing
+          </LinkButton>
+          <LinkButton href="/trial">Free Trial</LinkButton>
         </div>
       </div>
     </header>

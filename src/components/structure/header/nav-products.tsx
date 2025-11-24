@@ -34,7 +34,7 @@ const ProductContent: React.FC<ProductContentProps> = ({
   );
 };
 
-const products: ProductContentProps[] = [
+export const products: ProductContentProps[] = [
   { product: "nudge", Icon: Send },
   { product: "tilliPay", Icon: Coins },
   { product: "tilliX", Icon: MonitorCloud },

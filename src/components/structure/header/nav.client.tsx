@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { win } from "@/lib/utils";
+import { MobileNav } from "./mobile-nav.client";
 import { navItems } from "./nav-items";
 import { NavProducts } from "./nav-products";
 import { NavSolutions } from "./nav-solutions";
@@ -171,7 +172,9 @@ export const Nav: React.FC = () => {
     }, HOVER_CLOSE_DELAY + 150);
   };
 
-  return isMobile ? null : (
+  return isMobile ? (
+    <MobileNav />
+  ) : (
     <nav className="group z-9999 w-full">
       <ul className="flex justify-center font-medium text-xs">
         {navItems.map((item, _index) => (

@@ -35,10 +35,10 @@ type SolutionCategory = SolutionBase & {
   solutions: SolutionNode[];
 };
 
-const [
+export const [
   industrySolutions,
-  _useCaseSolutions,
-  _sizeSolutions,
+  useCaseSolutions,
+  sizeSolutions,
 ]: SolutionCategory[] = [
   {
     title: "By Industry",
@@ -195,12 +195,12 @@ export const NavSolutions: React.FC = () => {
 
       <div className="col-start-2 lg:col-start-3">
         <NavSolutionHeader
-          Icon={_useCaseSolutions.Icon}
-          solutions={_useCaseSolutions.solutions}
-          title={_useCaseSolutions.title}
+          Icon={useCaseSolutions.Icon}
+          solutions={useCaseSolutions.solutions}
+          title={useCaseSolutions.title}
         />
       </div>
-      {_useCaseSolutions.solutions.map((solution) => (
+      {useCaseSolutions.solutions.map((solution) => (
         <div className="col-start-2 lg:col-start-3" key={solution.href}>
           <NavSolution {...solution} />
         </div>
@@ -208,12 +208,12 @@ export const NavSolutions: React.FC = () => {
 
       <div className="col-start-2 lg:col-start-4">
         <NavSolutionHeader
-          Icon={_sizeSolutions.Icon}
-          solutions={_sizeSolutions.solutions}
-          title={_sizeSolutions.title}
+          Icon={sizeSolutions.Icon}
+          solutions={sizeSolutions.solutions}
+          title={sizeSolutions.title}
         />
       </div>
-      {_sizeSolutions.solutions.map((solution) => (
+      {sizeSolutions.solutions.map((solution) => (
         <div className="col-start-2 lg:col-start-4" key={solution.href}>
           <NavSolution {...solution} />
         </div>

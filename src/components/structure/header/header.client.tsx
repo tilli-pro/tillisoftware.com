@@ -7,48 +7,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Nav } from "./nav.client";
 
-const _navContent: { title: string; content: React.ReactElement }[] = [
-  {
-    title: "Products",
-    content: (
-      <div className="max-w-lg">
-        <div className="children: flex items-center justify-center gap-2">
-          <div className="relative h-[112.5px] w-[200px]">t</div>
-          <div className="relative h-[112.5px] w-[200px]">tp</div>
-          <div className="relative h-[112.5px] w-[200px]">n</div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Services",
-    content: (
-      <div className="min-w-[300px] max-w-lg">
-        <div className="grid grid-cols-2 items-stretch justify-stretch gap-2">
-          <div className="size-32">a</div>
-          <div className="size-32">a</div>
-          <div className="size-32">a</div>
-          <div className="size-32">a</div>
-          <div className="size-32">a</div>
-          <div className="size-32">a</div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Industries",
-    content: <div>Industries</div>,
-  },
-  {
-    title: "Developers",
-    content: <div>Developers</div>,
-  },
-  {
-    title: "Resources",
-    content: <div>Resources</div>,
-  },
-];
-
 export const Header: React.FC = () => {
   const _mobile = useIsMobile();
   const [hidden, setHidden] = useState(false);

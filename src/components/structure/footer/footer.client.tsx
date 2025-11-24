@@ -6,10 +6,9 @@ import {
   SiX,
   SiYoutube,
 } from "@icons-pack/react-simple-icons";
-import { Button } from "@/components/ui/button";
 import { Link } from "@/components/ui/links/inline";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { LinkedIn } from "./linkedin-icon";
 
 const footerSiteMapLinks: Record<string, { text: string; href: string }[]> = {
   Products: [
@@ -106,12 +105,15 @@ export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-black py-16 text-white">
       <div className="page-width">
-        <div className="group/footer-links mb-4 grid w-full grid-flow-col-dense grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-5 lg:grid-rows-1">
+        <div className="group/footer-links mb-4 grid w-full grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 lg:grid-cols-5 lg:grid-rows-1">
           {Object.entries(footerSiteMapLinks).map(([section, links]) => (
             <div
-              className="mb-4 flex flex-col items-start justify-start gap-4 text-left"
+              className="group/footer-link-list relative mb-4 flex flex-col items-start justify-start gap-4 text-left"
               key={section}
             >
+              <div className="-top-16 -left-16 absolute hidden h-0 w-full opacity-0 transition-all duration-300 group-has-[a:hover]/footer-link-list:h-[3px] group-has-[a:hover]/footer-link-list:opacity-100 group-has-[a:hover]/footer-link-list:duration-300 lg:block">
+                <div className="size-full bg-[linear-gradient(to_right,#00000000,#5C9BF4_33.5%,#2E67F8_78.8%,#6CD3EF_90%,#00000000_100%)] bg-position-[200%_0] bg-size-[100%_100%] transition-all duration-300 hover:bg-position-[200%_0] group-has-[a:hover]/footer-link-list:bg-position-[100%_0]" />
+              </div>
               <h3 className="font-sans transition-colors group-has-[a:hover]/footer-links:text-muted-foreground">
                 {section}
               </h3>
@@ -182,115 +184,75 @@ export const Footer: React.FC = () => {
               businesses and people connect, collaborate, and make payments in
               real-time.
             </p>
+            <div className="text-muted-foreground text-xs">
+              © {new Date().getFullYear()}{" "}
+              <span className="font-header font-medium text-white">tilli</span>.
+              all rights reserved.
+            </div>
           </div>
           <div className="flex flex-col items-center gap-4 lg:items-end">
-            {/* asdfasdfasdf */}
-          </div>
-        </div>
-      </div>
-      <div className="page-width grid grid-cols-3 grid-rows-2">
-        <div className="self-end justify-self-stretch">
-          <div className="flex w-full items-end justify-between">
-            <div className="flex flex-1 items-end justify-start gap-2">
-              <div className="flex flex-col justify-end gap-2">
-                <Button
-                  className="rounded-full"
-                  size="icon"
-                  variant="secondary"
-                >
-                  <SiYoutube className="size-4 text-black" />
-                </Button>
-                <Button
-                  className="rounded-full"
-                  size="icon"
-                  variant="secondary"
-                >
-                  <SiYoutube className="size-4 text-black" />
-                </Button>
-                <Button
-                  className="rounded-full"
-                  size="icon"
-                  variant="secondary"
-                >
-                  <SiX className="size-4 text-black" />
-                </Button>
-              </div>
-              <div className="flex flex-col justify-end gap-2">
-                <Button
-                  className="rounded-full"
-                  size="icon"
-                  variant="secondary"
-                >
-                  <SiFacebook className="size-4 text-black" />
-                </Button>
-                <Button
-                  className="rounded-full"
-                  size="icon"
-                  variant="secondary"
-                >
-                  <SiInstagram className="size-4 text-black" />
-                </Button>
-              </div>
+            <div className="flex items-center justify-center gap-4 lg:justify-end">
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="https://x.com/tillisoftware"
+                type="default"
+              >
+                <SiX className="size-4" />
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="https://instagram.com/tillisoftware"
+                type="default"
+              >
+                <SiInstagram className="size-4" />
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="https://facebook.com/tillisoftware"
+                type="default"
+              >
+                <SiFacebook className="size-4" />
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="https://youtube.com/@tillisoftware"
+                type="default"
+              >
+                <SiYoutube className="size-4" />
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="https://linkedin.com/company/tilli-llc/"
+                type="default"
+              >
+                <LinkedIn className="size-4 fill-muted-foreground transition-colors hover:fill-white" />
+              </Link>
             </div>
-
-            <div className="text-right text-muted-foreground text-xs">
-              <p>
-                © {new Date().getFullYear()}{" "}
-                <span className="font-header text-white">tilli</span>
-                <br />
-                all rights reserved
-              </p>
-              <div className="flex items-center justify-end pt-2">
-                <Link
-                  className="text-muted-foreground hover:text-muted-foreground"
-                  href="/terms"
-                >
-                  Terms
-                </Link>
-                <Separator
-                  className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
-                  orientation="vertical"
-                />
-                <Link
-                  className="text-muted-foreground hover:text-muted-foreground"
-                  href="/privacy-policy"
-                >
-                  Privacy
-                </Link>
-                <Separator
-                  className="mx-2 bg-muted-foreground data-[orientation=vertical]:h-3"
-                  orientation="vertical"
-                />
-                <Link
-                  className="text-muted-foreground hover:text-muted-foreground"
-                  href="/cookies"
-                >
-                  Cookies
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="self-end justify-self-center">
-          <div className="flex flex-col gap-2">
-            <Link className="font-header" href="/resources/demo">
-              Request a Demo
-            </Link>
-            <Link className="font-header" href="/resources/trial">
-              Start a Free Trial
-            </Link>
-            <Link className="font-header" href="/resources/contact">
-              Contact Us
-            </Link>
-          </div>
-        </div>
-        <div className="place-self-end">
-          <div className="flex flex-col text-right">
-            <div className="mb-4 font-header">Headquarters</div>
-            <div className="text-muted-foreground text-xs">
-              8260 Greensboro Dr,
-              <br />
-              Suite 270, McLean VA, 22102
+            <div className="flex items-center justify-center gap-4 text-sm lg:justify-end">
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="/terms"
+              >
+                Terms
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="/privacy-policy"
+              >
+                Privacy
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="/anti-slavery-policy"
+              >
+                Anti-Slavery Policy
+              </Link>
+              <Link
+                className="text-muted-foreground transition-colors hover:text-white"
+                href="/cookie-policy"
+              >
+                Cookies
+              </Link>
             </div>
           </div>
         </div>
@@ -298,7 +260,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-
-// TODO: find a linkedin icon
-// TODO: get all relevant social links
-// TODO: link socials to footer icons

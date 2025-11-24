@@ -43,6 +43,7 @@ export default function Home() {
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-8 py-4">
             <h1 className="text-4xl md:text-5xl">
               <span>Transform</span>
+              <br />
               <span>
                 <ContainerTextFlip
                   className="bg-none! font-normal text-4xl shadow-none! md:text-5xl"

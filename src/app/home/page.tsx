@@ -10,7 +10,6 @@ import { ContainerTextFlip } from "@/components/ui/text/container-flip-text";
 import { BusinessCarousel } from "./business-carousel";
 import { HeroImage } from "./hero";
 import { SolutionsCarousel } from "./solutions-carousel";
-// import { EmblaOptionsType } from "embla-carousel";
 
 import "@wooorm/starry-night/style/both";
 import {
@@ -21,10 +20,6 @@ import {
   sampleReactCode,
   sampleRubyCode,
 } from "./sample-code";
-
-// const OPTIONS: EmblaOptionsType = {};
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 export default function Home() {
   return (
@@ -383,7 +378,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="page-width my-32">
+        <section className="box-border ml-20 my-32">
           <div className="mb-6 flex items-center gap-2.5">
             <SectionSubtitle
               subtitle={"Solutions By Industry"}
@@ -391,7 +386,7 @@ export default function Home() {
             />
           </div>
 
-          <SolutionsCarousel slides={SLIDES} />
+          <SolutionsCarousel />
         </section>
 
         <section className="page-width my-32">

@@ -1,38 +1,42 @@
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
-// import { EmblaOptionsType } from "embla-carousel";
 import ClassNames from "embla-carousel-class-names";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import type React from "react";
+import { industries } from "./data";
 
-type PropType = {
-  slides: number[];
-  // options?: EmblaOptionsType;
-};
-
-export const SolutionsCarousel: React.FC<PropType> = (props) => {
-  const { slides } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel({}, [ClassNames(), Autoplay()]);
+export function SolutionsCarousel() {
+  const [emblaRef] = useEmblaCarousel(
+    {
+      containScroll: "trimSnaps",
+      align: "start",
+      loop: true,
+    },
+    [Autoplay(), ClassNames({ snapped: "is-snapped" })],
+  );
 
   return (
-    <div className="embla">
+    <section className="embla overflow-hidden">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
+          {industries.map((industry) => (
+            <div
+              className="embla__slide flex flex-col gap-4 items-center justify-center"
+              key={industry.name}
+            >
               <Image
-                alt="Your alt text"
+                alt={industry.name}
                 className="embla__slide__img"
-                height={350}
-                src={`https://picsum.photos/600/350?v=${index}`}
+                height={600}
+                src={industry.image}
                 width={600}
               />
+              <p className="font-medium text-sm"> {industry.name}</p>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-};
+}

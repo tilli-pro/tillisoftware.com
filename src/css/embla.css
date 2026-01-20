@@ -1,12 +1,15 @@
 .embla {
   max-width: 100rem;
+  min-height: 40rem;
   --slide-height: 19rem;
-  --slide-spacing: 2rem;
+  --slide-spacing: 4rem;
   --slide-size: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .embla__viewport {
-  overflow: hidden;
 }
 
 .embla__container {
@@ -22,7 +25,7 @@
 }
 
 .embla__slide.is-snapped {
-  transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(-100px) !important;
 }
 
 .embla__slide:not(.is-snapped) {

@@ -1,8 +1,8 @@
-import type { UseEmblaCarouselType } from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel-react";
 import { useEffect, useRef } from "react";
 
 export function useUnidirectionalEmbla(
-  emblaApi: UseEmblaCarouselType[1] | undefined,
+  emblaApi: EmblaCarouselType | undefined,
 ) {
   const startXRef = useRef<number | null>(null);
   const startIndexRef = useRef(0);

@@ -23,6 +23,30 @@ export const industries = [
       "Modernize utility billing, meter-to-cash workflows, and customer payments with real-time tracking and automated reminders.",
     image: "https://picsum.photos/600/350?v=1",
   },
+  {
+    name: "Banking and Finance",
+    description:
+      "Transform your company's financial solutions. Improve AML and KYC compliance and reduce operating costs while increasing customer satisfaction.",
+    image: "https://picsum.photos/600/350?v=4",
+  },
+  {
+    name: "Education and Universities",
+    description:
+      "Streamline tuition payments, campus services, and student billing with automated workflows designed for educational institutions.",
+    image: "https://picsum.photos/600/350?v=3",
+  },
+  {
+    name: "Insurance",
+    description:
+      "Simplify premium collections, claims processing, and policy management with intelligent automation built for insurance providers.",
+    image: "https://picsum.photos/600/350?v=2",
+  },
+  {
+    name: "Utilities",
+    description:
+      "Modernize utility billing, meter-to-cash workflows, and customer payments with real-time tracking and automated reminders.",
+    image: "https://picsum.photos/600/350?v=1",
+  },
 ];
 
 // TODO: delete above and uncomment this

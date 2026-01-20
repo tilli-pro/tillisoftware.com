@@ -2,19 +2,22 @@
 
 import Autoplay from "embla-carousel-autoplay";
 import ClassNames from "embla-carousel-class-names";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, { type EmblaOptionsType } from "embla-carousel-react";
 import Image from "next/image";
 import { industries } from "./data";
+import { useUnidirectionalEmbla } from "./useUnidirectionalEmbla";
 
 export function SolutionsCarousel() {
-  const [emblaRef] = useEmblaCarousel(
-    {
-      containScroll: "trimSnaps",
-      align: "start",
-      loop: true,
-    },
-    [Autoplay(), ClassNames({ snapped: "is-snapped" })],
-  );
+  const options: Partial<EmblaOptionsType> = {
+    align: "start",
+    loop: true,
+    containScroll: "trimSnaps",
+  };
+
+  const plugins = [Autoplay(), ClassNames({ snapped: "is-snapped" })];
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
+
+  useUnidirectionalEmbla(emblaApi);
 
   return (
     <section className="embla overflow-hidden">
@@ -32,7 +35,7 @@ export function SolutionsCarousel() {
                 src={industry.image}
                 width={600}
               />
-              <p className="font-medium text-sm"> {industry.name}</p>
+              <p className="font-medium text-sm">{industry.name}</p>
             </div>
           ))}
         </div>

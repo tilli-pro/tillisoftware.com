@@ -45,7 +45,6 @@ export function useUnidirectionalEmbla(
     viewport.addEventListener("pointermove", onPointerMove, { passive: false });
     viewport.addEventListener("pointerup", onPointerUp);
     viewport.addEventListener("pointercancel", onPointerUp);
-
     return () => {
       viewport.removeEventListener("pointerdown", onPointerDown);
       viewport.removeEventListener("pointermove", onPointerMove);

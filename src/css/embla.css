@@ -2,11 +2,12 @@
   max-width: 100rem;
   min-height: 40rem;
   --slide-height: 19rem;
-  --slide-spacing: 4rem;
+  --slide-spacing: 3rem;
   --slide-size: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .embla__viewport {
@@ -25,7 +26,7 @@
 }
 
 .embla__slide.is-snapped {
-  transform: translateY(-100px) !important;
+  transform: translateY(-60px) !important;
 }
 
 .embla__slide:not(.is-snapped) {
@@ -37,4 +38,5 @@
   width: 100%;
   object-fit: cover;
   border-radius: 1.35rem;
+  user-select: none;
 }

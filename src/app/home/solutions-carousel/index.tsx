@@ -10,8 +10,9 @@ import { useUnidirectionalEmbla } from "./useUnidirectionalEmbla";
 export function SolutionsCarousel() {
   const options: Partial<EmblaOptionsType> = {
     align: "start",
-    loop: true,
+    loop: true, // for some reason this is buggy, but we need this
     containScroll: "trimSnaps",
+    skipSnaps: true,
   };
 
   const plugins = [Autoplay(), ClassNames({ snapped: "is-snapped" })];
@@ -20,7 +21,7 @@ export function SolutionsCarousel() {
   useUnidirectionalEmbla(emblaApi);
 
   return (
-    <section className="embla overflow-hidden">
+    <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {industries.map((industry) => (

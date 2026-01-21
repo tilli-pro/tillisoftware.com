@@ -377,8 +377,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <section className="box-border ml-20 my-32">
+        {/* TODO: make a set mx for mobile */}
+        <section className="box-border md:ml-20 md:mx-0 mx-10 my-32">
           <div className="mb-6 flex items-center gap-2.5">
             <SectionSubtitle
               subtitle={"Solutions By Industry"}

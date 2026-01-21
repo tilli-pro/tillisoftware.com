@@ -47,7 +47,7 @@ export function SolutionsCarousel() {
       <TextContentSection activeIndustry={currentIndustry} />
 
       {/* Carousel */}
-      <section className="embla">
+      {/* <section className="embla">
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container">
             {industries.map((industry, idx) => (
@@ -67,7 +67,7 @@ export function SolutionsCarousel() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

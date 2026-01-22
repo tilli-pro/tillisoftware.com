@@ -1,4 +1,4 @@
-import type { EmblaCarouselType } from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
 import { useEffect, useRef } from "react";
 
 export function useUnidirectionalEmbla(
@@ -15,7 +15,7 @@ export function useUnidirectionalEmbla(
 
     const onPointerDown = (e: PointerEvent) => {
       startXRef.current = e.clientX;
-      startIndexRef.current = emblaApi.selectedScrollSnap();
+      startIndexRef.current = emblaApi.selectedSnap();
       isBlockingRef.current = false;
     };
 
@@ -32,7 +32,7 @@ export function useUnidirectionalEmbla(
         e.stopImmediatePropagation();
 
         // scroll to the start index
-        emblaApi.scrollTo(startIndexRef.current, false);
+        // emblaApi.scrollTo(startIndexRef.current, false);
       }
     };
 

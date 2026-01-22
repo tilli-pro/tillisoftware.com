@@ -303,7 +303,7 @@ export default function Home() {
               </div>
 
               <div className="flex h-[600px] w-full items-center justify-center gap-4">
-                <CodeDemo
+                {/* <CodeDemo
                   blocks={[
                     {
                       tabTitle: "React",
@@ -346,7 +346,7 @@ export default function Home() {
                   ]}
                   className="w-[400px] rounded bg-background/20 backdrop-blur"
                   speed={16}
-                />
+                /> */}
                 <div className="h-80 w-[300px] rounded bg-gray-500/40"></div>
               </div>
             </div>

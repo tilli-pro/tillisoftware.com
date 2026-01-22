@@ -5,23 +5,23 @@ export function generateFinancialMetrics() {
     {
       label: "Total Revenue ytd",
       value: faker.finance.amount({ min: 10000, max: 500000, dec: 2 }),
-      currency: "US$"
+      currency: "US$",
     },
     {
       label: "Unpaid Balance",
       value: faker.finance.amount({ min: 100, max: 50000, dec: 2 }),
-      currency: "US$"
+      currency: "US$",
     },
     {
       label: "Total Amount due in the next 30 days",
       value: faker.finance.amount({ min: 100, max: 30000, dec: 2 }),
-      currency: "US$"
+      currency: "US$",
     },
     {
       label: "Invoices past due date",
       value: faker.finance.amount({ min: 0, max: 10000, dec: 2 }),
-      currency: "US$"
-    }
+      currency: "US$",
+    },
   ];
 }
 
@@ -30,21 +30,29 @@ export function generateAccounts(count = 3) {
     id: faker.string.uuid(),
     name: faker.company.name(),
     email: faker.internet.email(),
-    unpaidBalance: Number.parseFloat(faker.finance.amount({ min: 100, max: 500000, dec: 2 })),
-    overdue: Number.parseFloat(faker.finance.amount({ min: 0, max: 10000, dec: 2 })),
+    unpaidBalance: Number.parseFloat(
+      faker.finance.amount({ min: 100, max: 500000, dec: 2 }),
+    ),
+    overdue: Number.parseFloat(
+      faker.finance.amount({ min: 0, max: 10000, dec: 2 }),
+    ),
     address: `${faker.location.streetAddress()}, ${faker.location.city()}, ${faker.location.state()} ${faker.location.zipCode()}`,
     lastAccessed: faker.date.recent({ days: 365 }).toLocaleDateString("en-US", {
       day: "2-digit",
       month: "2-digit",
-      year: "numeric"
-    })
+      year: "numeric",
+    }),
   }));
 }
 
 export function generateInvoices(count = 10) {
   return Array.from({ length: count }, () => {
-    const totalAmount = Number.parseFloat(faker.finance.amount({ min: 100, max: 50000, dec: 0 }));
-    const amountBalance = Number.parseFloat(faker.finance.amount({ min: 0, max: totalAmount, dec: 0 }));
+    const totalAmount = Number.parseFloat(
+      faker.finance.amount({ min: 100, max: 50000, dec: 0 }),
+    );
+    const amountBalance = Number.parseFloat(
+      faker.finance.amount({ min: 0, max: totalAmount, dec: 0 }),
+    );
 
     return {
       id: faker.string.uuid(),
@@ -55,22 +63,32 @@ export function generateInvoices(count = 10) {
       invoiceDate: faker.date.past({ years: 1 }).toLocaleDateString("en-US", {
         day: "2-digit",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       }),
       dueDate: faker.date.future({ years: 1 }).toLocaleDateString("en-US", {
         day: "2-digit",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       }),
-      invoiceAmount: Number.parseFloat(faker.finance.amount({ min: 10, max: 1000, dec: 2 }))
+      invoiceAmount: Number.parseFloat(
+        faker.finance.amount({ min: 10, max: 1000, dec: 2 }),
+      ),
     };
   });
 }
 
 export function generatePartialInvoices(count = 5) {
   return Array.from({ length: count }, () => {
-    const totalAmount = Number.parseFloat(faker.finance.amount({ min: 1000, max: 10000, dec: 0 }));
-    const amountPaid = Number.parseFloat(faker.finance.amount({ min: totalAmount * 0.1, max: totalAmount * 0.95, dec: 0 }));
+    const totalAmount = Number.parseFloat(
+      faker.finance.amount({ min: 1000, max: 10000, dec: 0 }),
+    );
+    const amountPaid = Number.parseFloat(
+      faker.finance.amount({
+        min: totalAmount * 0.1,
+        max: totalAmount * 0.95,
+        dec: 0,
+      }),
+    );
 
     return {
       id: faker.string.uuid(),
@@ -80,9 +98,9 @@ export function generatePartialInvoices(count = 5) {
       dueDate: faker.date.future({ years: 1 }).toLocaleDateString("en-US", {
         day: "2-digit",
         month: "short",
-        year: "numeric"
+        year: "numeric",
       }),
-      checked: faker.datatype.boolean()
+      checked: faker.datatype.boolean(),
     };
   });
 }

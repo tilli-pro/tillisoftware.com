@@ -1,11 +1,11 @@
 "use client";
 
+import { Search } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Invoice {
@@ -30,10 +30,14 @@ export function InvoiceTable({
   invoices,
   onSelectAll,
   onSelectInvoice,
-  className
+  className,
 }: InvoiceTableProps) {
-  const [selectedInvoices, setSelectedInvoices] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<"open" | "unpaid" | "all" | "past">("open");
+  const [selectedInvoices, setSelectedInvoices] = useState<Set<string>>(
+    new Set(),
+  );
+  const [activeTab, setActiveTab] = useState<
+    "open" | "unpaid" | "all" | "past"
+  >("open");
   const [searchQuery, setSearchQuery] = useState("");
 
   const toggleInvoice = (id: string) => {
@@ -53,16 +57,23 @@ export function InvoiceTable({
       setSelectedInvoices(new Set());
       onSelectAll?.(false);
     } else {
-      setSelectedInvoices(new Set(invoices.map(inv => inv.id)));
+      setSelectedInvoices(new Set(invoices.map((inv) => inv.id)));
       onSelectAll?.(true);
     }
   };
 
-  const allSelected = selectedInvoices.size === invoices.length && invoices.length > 0;
-  const someSelected = selectedInvoices.size > 0 && selectedInvoices.size < invoices.length;
+  const allSelected =
+    selectedInvoices.size === invoices.length && invoices.length > 0;
+  const someSelected =
+    selectedInvoices.size > 0 && selectedInvoices.size < invoices.length;
 
   return (
-    <Card className={cn("w-full border-none bg-white/95 shadow-lg backdrop-blur-sm dark:bg-gray-950/95", className)}>
+    <Card
+      className={cn(
+        "w-full border-none bg-white/95 shadow-lg backdrop-blur-sm dark:bg-gray-950/95",
+        className,
+      )}
+    >
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">Invoices</CardTitle>
@@ -77,17 +88,17 @@ export function InvoiceTable({
               { key: "open", label: "Open Invoices", count: 16 },
               { key: "unpaid", label: "Unpaid Invoices", count: 3 },
               { key: "all", label: "All Invoices", count: 19 },
-              { key: "past", label: "Past Invoices", count: 0 }
+              { key: "past", label: "Past Invoices", count: 0 },
             ].map((tab) => (
               <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key as typeof activeTab)}
                 className={cn(
                   "rounded-md px-3 py-1.5 transition-colors",
                   activeTab === tab.key
                     ? "bg-primary/10 font-medium text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key as typeof activeTab)}
               >
                 {tab.label} {tab.count}
               </button>
@@ -101,16 +112,16 @@ export function InvoiceTable({
           <div className="relative flex-1">
             <Search className="-translate-y-1/2 absolute top-1/2 left-3 size-4 text-muted-foreground" />
             <Input
+              className="pl-9"
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
             />
           </div>
-          <Button variant="link" className="text-primary text-sm">
+          <Button className="text-primary text-sm" variant="link">
             Select All
           </Button>
-          <Button variant="link" className="text-muted-foreground text-sm">
+          <Button className="text-muted-foreground text-sm" variant="link">
             Column Options
           </Button>
         </div>
@@ -123,26 +134,40 @@ export function InvoiceTable({
                   <th className="w-12 p-3">
                     <Checkbox
                       checked={allSelected}
+                      className={cn(
+                        someSelected && "data-[state=checked]:bg-primary/50",
+                      )}
                       onCheckedChange={toggleAll}
-                      className={cn(someSelected && "data-[state=checked]:bg-primary/50")}
                     />
                   </th>
-                  <th className="p-3 text-left font-medium text-muted-foreground">Invoice Number</th>
-                  <th className="p-3 text-left font-medium text-muted-foreground">Total Amount</th>
-                  <th className="p-3 text-left font-medium text-muted-foreground">Amount Balance</th>
-                  <th className="p-3 text-left font-medium text-muted-foreground">Invoice Date</th>
-                  <th className="p-3 text-left font-medium text-muted-foreground">Due Date</th>
-                  <th className="p-3 text-right font-medium text-muted-foreground">Invoice Amount</th>
+                  <th className="p-3 text-left font-medium text-muted-foreground">
+                    Invoice Number
+                  </th>
+                  <th className="p-3 text-left font-medium text-muted-foreground">
+                    Total Amount
+                  </th>
+                  <th className="p-3 text-left font-medium text-muted-foreground">
+                    Amount Balance
+                  </th>
+                  <th className="p-3 text-left font-medium text-muted-foreground">
+                    Invoice Date
+                  </th>
+                  <th className="p-3 text-left font-medium text-muted-foreground">
+                    Due Date
+                  </th>
+                  <th className="p-3 text-right font-medium text-muted-foreground">
+                    Invoice Amount
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {invoices.map((invoice, index) => (
                   <tr
-                    key={invoice.id}
                     className={cn(
                       "border-b transition-colors last:border-b-0 hover:bg-muted/30",
-                      index === 0 && "bg-muted/20"
+                      index === 0 && "bg-muted/20",
                     )}
+                    key={invoice.id}
                   >
                     <td className="p-3">
                       <Checkbox
@@ -151,11 +176,17 @@ export function InvoiceTable({
                       />
                     </td>
                     <td className="p-3 font-medium">{invoice.number}</td>
-                    <td className="p-3">${invoice.totalAmount.toLocaleString()}</td>
-                    <td className="p-3">${invoice.amountBalance.toLocaleString()}</td>
+                    <td className="p-3">
+                      ${invoice.totalAmount.toLocaleString()}
+                    </td>
+                    <td className="p-3">
+                      ${invoice.amountBalance.toLocaleString()}
+                    </td>
                     <td className="p-3">{invoice.invoiceDate}</td>
                     <td className="p-3">{invoice.dueDate}</td>
-                    <td className="p-3 text-right">${invoice.invoiceAmount.toLocaleString()}</td>
+                    <td className="p-3 text-right">
+                      ${invoice.invoiceAmount.toLocaleString()}
+                    </td>
                   </tr>
                 ))}
               </tbody>

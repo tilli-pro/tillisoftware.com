@@ -1,41 +1,41 @@
-"use client"
+"use client";
 
-import { useEffect, useState, type CSSProperties } from "react"
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import { type CSSProperties, useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface LightRaysProps extends React.HTMLAttributes<HTMLDivElement> {
-  ref?: React.Ref<HTMLDivElement>
-  count?: number
-  color?: string
-  blur?: number
-  speed?: number
-  length?: string
+  ref?: React.Ref<HTMLDivElement>;
+  count?: number;
+  color?: string;
+  blur?: number;
+  speed?: number;
+  length?: string;
 }
 
 type LightRay = {
-  id: string
-  left: number
-  rotate: number
-  width: number
-  swing: number
-  delay: number
-  duration: number
-  intensity: number
-}
+  id: string;
+  left: number;
+  rotate: number;
+  width: number;
+  swing: number;
+  delay: number;
+  duration: number;
+  intensity: number;
+};
 
 const createRays = (count: number, cycle: number): LightRay[] => {
-  if (count <= 0) return []
+  if (count <= 0) return [];
 
   return Array.from({ length: count }, (_, index) => {
-    const left = 8 + Math.random() * 84
-    const rotate = -28 + Math.random() * 56
-    const width = 160 + Math.random() * 160
-    const swing = 0.8 + Math.random() * 1.8
-    const delay = Math.random() * cycle
-    const duration = cycle * (0.75 + Math.random() * 0.5)
-    const intensity = 0.6 + Math.random() * 0.5
+    const left = 8 + Math.random() * 84;
+    const rotate = -28 + Math.random() * 56;
+    const width = 160 + Math.random() * 160;
+    const swing = 0.8 + Math.random() * 1.8;
+    const delay = Math.random() * cycle;
+    const duration = cycle * (0.75 + Math.random() * 0.5);
+    const intensity = 0.6 + Math.random() * 0.5;
 
     return {
       id: `${index}-${Math.round(left * 10)}`,
@@ -46,9 +46,9 @@ const createRays = (count: number, cycle: number): LightRay[] => {
       delay,
       duration,
       intensity,
-    }
-  })
-}
+    };
+  });
+};
 
 const Ray = ({
   left,
@@ -61,18 +61,18 @@ const Ray = ({
 }: LightRay) => {
   return (
     <motion.div
+      animate={{
+        opacity: [0, intensity, 0],
+        rotate: [rotate - swing, rotate + swing, rotate - swing],
+      }}
       className="-top-[12%] -translate-x-1/2 pointer-events-none absolute left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--light-rays-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
+      initial={{ rotate: rotate }}
       style={
         {
           "--ray-left": `${left}%`,
           "--ray-width": `${width}px`,
         } as CSSProperties
       }
-      initial={{ rotate: rotate }}
-      animate={{
-        opacity: [0, intensity, 0],
-        rotate: [rotate - swing, rotate + swing, rotate - swing],
-      }}
       transition={{
         duration: duration,
         repeat: Infinity,
@@ -81,8 +81,8 @@ const Ray = ({
         repeatDelay: duration * 0.1,
       }}
     />
-  )
-}
+  );
+};
 
 export function LightRays({
   className,
@@ -95,20 +95,20 @@ export function LightRays({
   ref,
   ...props
 }: LightRaysProps) {
-  const [rays, setRays] = useState<LightRay[]>([])
-  const cycleDuration = Math.max(speed, 0.1)
+  const [rays, setRays] = useState<LightRay[]>([]);
+  const cycleDuration = Math.max(speed, 0.1);
 
   useEffect(() => {
-    setRays(createRays(count, cycleDuration))
-  }, [count, cycleDuration])
+    setRays(createRays(count, cycleDuration));
+  }, [count, cycleDuration]);
 
   return (
     <div
-      ref={ref}
       className={cn(
         "pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[inherit]",
-        className
+        className,
       )}
+      ref={ref}
       style={
         {
           "--light-rays-color": color,
@@ -145,5 +145,5 @@ export function LightRays({
         ))}
       </div>
     </div>
-  )
+  );
 }

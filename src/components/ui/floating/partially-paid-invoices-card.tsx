@@ -23,10 +23,15 @@ interface PartiallyPaidInvoicesCardProps {
 export function PartiallyPaidInvoicesCard({
   invoices,
   onToggleInvoice,
-  className
+  className,
 }: PartiallyPaidInvoicesCardProps) {
   return (
-    <Card className={cn("w-full max-w-md border-none bg-white/95 shadow-lg backdrop-blur-sm dark:bg-gray-950/95", className)}>
+    <Card
+      className={cn(
+        "w-full max-w-md border-none bg-white/95 shadow-lg backdrop-blur-sm dark:bg-gray-950/95",
+        className,
+      )}
+    >
       <CardHeader className="pb-4">
         <CardTitle className="font-medium text-muted-foreground text-sm">
           Partially Paid Invoices
@@ -35,11 +40,18 @@ export function PartiallyPaidInvoicesCard({
       <CardContent className="px-6 pb-6">
         <div className="space-y-4">
           {invoices.map((invoice) => {
-            const percentage = Math.round((invoice.amountPaid / invoice.totalAmount) * 100);
-            const progressColor = percentage >= 70 ? "bg-green-500" : percentage >= 30 ? "bg-yellow-500" : "bg-red-500";
+            const percentage = Math.round(
+              (invoice.amountPaid / invoice.totalAmount) * 100,
+            );
+            const progressColor =
+              percentage >= 70
+                ? "bg-green-500"
+                : percentage >= 30
+                  ? "bg-yellow-500"
+                  : "bg-red-500";
 
             return (
-              <div key={invoice.id} className="space-y-2">
+              <div className="space-y-2" key={invoice.id}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Checkbox
@@ -59,7 +71,8 @@ export function PartiallyPaidInvoicesCard({
                   </div>
                   <div className="text-right">
                     <p className="font-medium text-sm">
-                      ${invoice.amountPaid.toLocaleString()} out of ${invoice.totalAmount.toLocaleString()} paid
+                      ${invoice.amountPaid.toLocaleString()} out of $
+                      {invoice.totalAmount.toLocaleString()} paid
                     </p>
                     <p className="text-muted-foreground text-xs">
                       {percentage}%
@@ -67,14 +80,11 @@ export function PartiallyPaidInvoicesCard({
                   </div>
                 </div>
                 <div className="relative">
-                  <Progress
-                    value={percentage}
-                    className="h-2"
-                  />
+                  <Progress className="h-2" value={percentage} />
                   <div
                     className={cn(
                       "absolute top-0 left-0 h-2 rounded-full transition-all",
-                      progressColor
+                      progressColor,
                     )}
                     style={{ width: `${percentage}%` }}
                   />

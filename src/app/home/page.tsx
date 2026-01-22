@@ -31,7 +31,7 @@ export default function Home() {
 
       <main className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-start">
         <section
-          className="page-width flex flex-col items-center justify-center gap-12 pt-8 text-center"
+          className="page-width flex flex-col items-center justify-center gap-12 py-8 text-center backdrop-blur-sm"
           id="hero"
         >
           <Button className="block" size="sm">
@@ -47,7 +47,7 @@ export default function Home() {
               <span>
                 <ContainerTextFlip
                   className="bg-none! font-normal text-3xl shadow-none! md:text-5xl"
-                  interval={2000}
+                  interval={2500}
                   words={[
                     "Billing",
                     "Messaging",

@@ -26,7 +26,7 @@ export const HeroImage: React.FC = () => {
 
   return (
     <motion.div
-      className="-top-20 -mb-40 pointer-events-none relative z-10 flex h-100 w-full origin-[50%_100%] items-start justify-center"
+      className="-mb-40 -z-1 pointer-events-none fixed bottom-[25%] isolate flex h-100 w-full origin-[50%_100%] items-end justify-center"
       id="hero-images"
       style={{ scale, translateY, opacity }}
     >

@@ -43,11 +43,11 @@ export function SolutionsCarousel() {
   const currentIndustry = industries[selectedIdx % industries.length];
 
   return (
-    <div className="flex flex-col xl:gap-20 xl:flex-row xl:items-center xl:gap-12">
+    <div className="flex flex-col xl:flex-row xl:items-center xl:gap-24">
       <TextContentSection activeIndustry={currentIndustry} />
 
       {/* Carousel */}
-      {/* <section className="embla">
+      <section className="embla">
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container">
             {industries.map((industry, idx) => (
@@ -67,7 +67,7 @@ export function SolutionsCarousel() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }

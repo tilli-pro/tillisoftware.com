@@ -116,15 +116,21 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      embla-carousel:
+        specifier: 9.0.0-rc01
+        version: 9.0.0-rc01
       embla-carousel-auto-scroll:
-        specifier: ^8.6.0
-        version: 8.6.0(embla-carousel@8.6.0)
+        specifier: 9.0.0-rc01
+        version: 9.0.0-rc01(embla-carousel@9.0.0-rc01)
       embla-carousel-autoplay:
-        specifier: ^8.6.0
-        version: 8.6.0(embla-carousel@8.6.0)
+        specifier: 9.0.0-rc01
+        version: 9.0.0-rc01(embla-carousel@9.0.0-rc01)
+      embla-carousel-class-names:
+        specifier: 9.0.0-rc01
+        version: 9.0.0-rc01(embla-carousel@9.0.0-rc01)
       embla-carousel-react:
-        specifier: ^8.6.0
-        version: 8.6.0(react@19.2.0)
+        specifier: 9.0.0-rc01
+        version: 9.0.0-rc01(react@19.2.0)
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
@@ -1577,28 +1583,33 @@ packages:
   dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
 
-  embla-carousel-auto-scroll@8.6.0:
-    resolution: {integrity: sha512-WT9fWhNXFpbQ6kP+aS07oF5IHYLZ1Dx4DkwgCY8Hv2ZyYd2KMCPfMV1q/cA3wFGuLO7GMgKiySLX90/pQkcOdQ==}
+  embla-carousel-auto-scroll@9.0.0-rc01:
+    resolution: {integrity: sha512-9lMYoiriEwy2foZ0i7lHG9rU8TMPxSgw3jXmZr4de/UXzqB/fv+z8deHIOORSlA/5Po+6r6+mov3g2tT3T0S4w==}
     peerDependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel-autoplay@8.6.0:
-    resolution: {integrity: sha512-OBu5G3nwaSXkZCo1A6LTaFMZ8EpkYbwIaH+bPqdBnDGQ2fh4+NbzjXjs2SktoPNKCtflfVMc75njaDHOYXcrsA==}
+  embla-carousel-autoplay@9.0.0-rc01:
+    resolution: {integrity: sha512-gl7jUe0X9xd5v7IiyFF2FCR+KTBesnutM0gQ3S75oo9EizZi5tJMNdVaFwvzepz6kGzDkkSbKMWitQvAbFVfdQ==}
     peerDependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel-react@8.6.0:
-    resolution: {integrity: sha512-0/PjqU7geVmo6F734pmPqpyHqiM99olvyecY7zdweCw+6tKEXnrE90pBiBbMMU8s5tICemzpQ3hi5EpxzGW+JA==}
+  embla-carousel-class-names@9.0.0-rc01:
+    resolution: {integrity: sha512-3REWZOQGpc5cpbusftwghFle8yvINlCIqIj0QlonWRGsrgh6W+m4bAYeF0gKY9iGbuKfCRxDTBqdWQGA/DDzpA==}
+    peerDependencies:
+      embla-carousel: 9.0.0-rc01
+
+  embla-carousel-react@9.0.0-rc01:
+    resolution: {integrity: sha512-2ik9QtVm3UXJWkVdEEm6bInmxNSmxq9Z2q5GWuJx3v2vZvujmlDzcrIE6bvh+wWgPmDn6jekJCRHm1eEl/N0SA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
-  embla-carousel-reactive-utils@8.6.0:
-    resolution: {integrity: sha512-fMVUDUEx0/uIEDM0Mz3dHznDhfX+znCCDCeIophYb1QGVM7YThSWX+wz11zlYwWFOr74b4QLGg0hrGPJeG2s4A==}
+  embla-carousel-reactive-utils@9.0.0-rc01:
+    resolution: {integrity: sha512-RnW0NMrL7wVAQb9jro+l96hLI2JairyFHS2Jv+fvXakveD/c5aD9aoNH94YRbTmi0G7PxrKSxydmCpTy5eFmrA==}
     peerDependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel@8.6.0:
-    resolution: {integrity: sha512-SjWyZBHJPbqxHOzckOfo8lHisEaJWmwd23XppYFYVh10bU66/Pn5tkVkbkCMZVdbUE5eTCI2nD8OyIP4Z+uwkA==}
+  embla-carousel@9.0.0-rc01:
+    resolution: {integrity: sha512-4BTERU1gAXgg4Vl0m7hQ1GzePGLNNfM2j030ww8i9idiPXumyRUpaNUDfT2zx1Hv8um1Ew7QKBy/HdNPz8L30g==}
 
   enhanced-resolve@5.18.3:
     resolution: {integrity: sha512-d4lC8xfavMeBjzGr2vECC3fsGXziXZQyJxD868h2M/mBI3PwAuODxAkLkq5HYuvrPYcUtiLzsTo8U3PgX3Ocww==}
@@ -3560,25 +3571,29 @@ snapshots:
       '@babel/runtime': 7.28.4
       csstype: 3.1.3
 
-  embla-carousel-auto-scroll@8.6.0(embla-carousel@8.6.0):
+  embla-carousel-auto-scroll@9.0.0-rc01(embla-carousel@9.0.0-rc01):
     dependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel-autoplay@8.6.0(embla-carousel@8.6.0):
+  embla-carousel-autoplay@9.0.0-rc01(embla-carousel@9.0.0-rc01):
     dependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel-react@8.6.0(react@19.2.0):
+  embla-carousel-class-names@9.0.0-rc01(embla-carousel@9.0.0-rc01):
     dependencies:
-      embla-carousel: 8.6.0
-      embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)
+      embla-carousel: 9.0.0-rc01
+
+  embla-carousel-react@9.0.0-rc01(react@19.2.0):
+    dependencies:
+      embla-carousel: 9.0.0-rc01
+      embla-carousel-reactive-utils: 9.0.0-rc01(embla-carousel@9.0.0-rc01)
       react: 19.2.0
 
-  embla-carousel-reactive-utils@8.6.0(embla-carousel@8.6.0):
+  embla-carousel-reactive-utils@9.0.0-rc01(embla-carousel@9.0.0-rc01):
     dependencies:
-      embla-carousel: 8.6.0
+      embla-carousel: 9.0.0-rc01
 
-  embla-carousel@8.6.0: {}
+  embla-carousel@9.0.0-rc01: {}
 
   enhanced-resolve@5.18.3:
     dependencies:

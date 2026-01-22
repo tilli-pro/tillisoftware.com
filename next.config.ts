@@ -10,7 +10,18 @@ const nextConfig: NextConfig = {
   // typedRoutes: true,
   allowedDevOrigins: ["tillisoftware.local"],
   images: {
-    remotePatterns: [new URL("https://placecats.com/**")],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "placecats.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        pathname: "/**",
+      },
+    ],
     // dangerouslyAllowSVG: true,
   },
   experimental: {

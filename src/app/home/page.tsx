@@ -303,7 +303,7 @@ export default function Home() {
               </div>
 
               <div className="flex h-[600px] w-full items-center justify-center gap-4">
-                <CodeDemo
+                {/* <CodeDemo
                   blocks={[
                     {
                       tabTitle: "React",
@@ -346,7 +346,7 @@ export default function Home() {
                   ]}
                   className="w-[400px] rounded bg-background/20 backdrop-blur"
                   speed={16}
-                />
+                /> */}
                 <div className="h-80 w-[300px] rounded bg-gray-500/40"></div>
               </div>
             </div>
@@ -377,8 +377,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <section className="page-width my-32">
+        {/* TODO: make a set mx for mobile */}
+        <section className="box-border md:ml-20 md:mx-0 mx-10 my-32">
           <div className="mb-6 flex items-center gap-2.5">
             <SectionSubtitle
               subtitle={"Solutions By Industry"}
